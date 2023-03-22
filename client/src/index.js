@@ -17,7 +17,6 @@ root.render(
           <Route path="stocks" element={<Stocks />} />
           <Route path="mutualfund" element={<MutualFunds />} />
           <Route path="crypto" element={<Crypto />} />
-
           {/* <Route path="*" element={<NoPage />} /> */}
         </Route>
       </Routes>
