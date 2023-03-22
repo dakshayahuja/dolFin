@@ -1,0 +1,22 @@
+a.nav-link {
+  color: #001f3f;
+  font-size: 1.2rem;
+}
+
+a.navbar-brand {
+  font-size: 1.4rem;
+}
+
+a.nav-link:hover {
+  color: #fe633d;
+}
+
+button.btn.btn-light {
+  background-color: inherit;
+  border: none;
+}
+
+button.btn.btn-light:hover {
+  background-color: #fe643df4;
+  color: #fff;
+}
