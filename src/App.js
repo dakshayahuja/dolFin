@@ -1,11 +1,23 @@
-import Appbar from "./Components/Navbar";
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+import "bootstrap/dist/css/bootstrap.min.css";
+import AppBar from "./Components/Navbar";
+import Dashboard from "./Components/Dashboard";
+import Landing from "./Components/Landing";
 const App = () => {
+  let page = <Landing />;
+  const pageDecide = () => {
+    var login = true;
+    if (login === true) {
+      page = <Dashboard />;
+    } else {
+      page = <Landing />;
+    }
+  };
+  pageDecide();
   return (
-    <div>
-      <Appbar />
-    </div>
+    <>
+      <AppBar />
+      {page}
+    </>
   );
 };
 

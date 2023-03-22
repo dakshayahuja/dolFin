@@ -1,13 +1,18 @@
-a.nav-link {
+a{
+  text-decoration:none;
   color: #001f3f;
-  font-size: 1.2rem;
+  font-size: 1.2rem
 }
 
-a.navbar-brand {
+.navbar-brand a{
   font-size: 1.4rem;
 }
 
-a.nav-link:hover {
+.navbar-brand a:hover{
+  color: #001f3f;
+}
+
+a:hover {
   color: #fe633d;
 }
 
