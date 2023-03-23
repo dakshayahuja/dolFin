@@ -1,6 +1,6 @@
 import logo from "../media/favicon.png";
-import Landing from "./Landing";
-import Dashboard from "./Dashboard";
+import Landing from "./HomePage/Landing";
+import Dashboard from "./HomePage/Dashboard";
 import Stocks from "./SubPages/Stocks";
 import MutualFunds from "./SubPages/MutualFunds";
 import Crypto from "./SubPages/Crypto";
@@ -12,7 +12,7 @@ import Signup from "./Account/SignUp";
 function AppBar() {
   let page = <Landing />;
   const pageDecide = () => {
-    var login = true;
+    var login = false;
     if (login === true) {
       page = <Dashboard />;
     } else {
