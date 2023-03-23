@@ -1,9 +1,24 @@
 import logo from "../media/favicon.png";
+import Landing from "./Landing";
+import Dashboard from "./Dashboard";
+import Stocks from "./SubPages/Stocks";
+import MutualFunds from "./SubPages/MutualFunds";
+import Crypto from "./SubPages/Crypto";
+import { Link, Routes, Route, Outlet } from "react-router-dom";
 import { Nav, Navbar, Button, Container } from "react-bootstrap";
-import { Outlet, Link } from "react-router-dom";
 import "./Navbar.css";
 
 function AppBar() {
+  let page = <Landing />;
+  const pageDecide = () => {
+    var login = true;
+    if (login === true) {
+      page = <Dashboard />;
+    } else {
+      page = <Landing />;
+    }
+  };
+  pageDecide();
   return (
     <>
       <Navbar collapseOnSelect expand="lg">
@@ -40,6 +55,13 @@ function AppBar() {
         </Container>
       </Navbar>
       <Outlet />
+
+      <Routes>
+        <Route path="/" element={page} />
+        <Route path="/stocks" element={<Stocks />} />
+        <Route path="/mutualfund" element={<MutualFunds />} />
+        <Route path="/crypto" element={<Crypto />} />
+      </Routes>
     </>
   );
 }
