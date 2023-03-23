@@ -21,7 +21,11 @@ button.btn.btn-light {
   border: none;
 }
 
-button.btn.btn-light:hover {
-  background-color: #fe643df4;
+button.btn.btn-light:hover a{
   color: #fff;
+}
+
+button.btn.btn-light:hover{
+  background-color: #fe643df4;
+  
 }

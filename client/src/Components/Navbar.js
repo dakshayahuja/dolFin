@@ -7,6 +7,7 @@ import Crypto from "./SubPages/Crypto";
 import { Link, Routes, Route, Outlet } from "react-router-dom";
 import { Nav, Navbar, Button, Container } from "react-bootstrap";
 import "./Navbar.css";
+import Signup from "./Account/SignUp";
 
 function AppBar() {
   let page = <Landing />;
@@ -38,18 +39,18 @@ function AppBar() {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mx-auto gap-5">
-              <Nav.Link>
+              <Nav>
                 <Link to="/stocks">Stocks</Link>
-              </Nav.Link>
-              <Nav.Link>
+              </Nav>
+              <Nav>
                 <Link to="/mutualfund">Mutual Funds</Link>
-              </Nav.Link>
-              <Nav.Link>
+              </Nav>
+              <Nav>
                 <Link to="/crypto">Cryptocurrency</Link>
-              </Nav.Link>
+              </Nav>
             </Nav>
             <Nav>
-              <Button variant="light">Signup</Button>{" "}
+              <Button variant="light"><Link to="/signup">Signup</Link></Button>{" "}
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -61,6 +62,8 @@ function AppBar() {
         <Route path="/stocks" element={<Stocks />} />
         <Route path="/mutualfund" element={<MutualFunds />} />
         <Route path="/crypto" element={<Crypto />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
     </>
   );
