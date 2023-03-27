@@ -22,7 +22,7 @@ function AppBar() {
   pageDecide();
   return (
     <>
-      <Navbar collapseOnSelect expand="lg">
+      <Navbar collapseOnSelect expand="lg" className="navbar">
         <Container>
           <Navbar.Brand>
             <Link to="/">
