@@ -1,13 +1,13 @@
+import "./Navbar.css";
 import logo from "../media/favicon.png";
 import Landing from "./HomePage/Landing";
 import Dashboard from "./HomePage/Dashboard";
+import Signup from "./Account/SignUp";
 import Stocks from "./SubPages/Stocks";
-import MutualFunds from "./SubPages/MutualFunds";
 import Crypto from "./SubPages/Crypto";
+import MutualFunds from "./SubPages/MutualFunds";
 import { Link, Routes, Route, Outlet } from "react-router-dom";
 import { Nav, Navbar, Button, Container } from "react-bootstrap";
-import "./Navbar.css";
-import Signup from "./Account/SignUp";
 
 function AppBar() {
   let page = <Landing />;
@@ -50,7 +50,9 @@ function AppBar() {
               </Nav>
             </Nav>
             <Nav>
-              <Button variant="light"><Link to="/signup">Signup</Link></Button>{" "}
+              <Button variant="light">
+                <Link to="/signup">Signup</Link>
+              </Button>{" "}
             </Nav>
           </Navbar.Collapse>
         </Container>

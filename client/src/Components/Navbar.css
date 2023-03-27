@@ -1,18 +1,18 @@
-/* .navbar{
-  background-color: aliceblue;
-} */
-
-a{
-  text-decoration:none;
-  color: #001f3f;
-  font-size: 1.2rem
+.navbar {
+  background-color: #f8f8f8;
 }
 
-.navbar-brand a{
+a {
+  text-decoration: none;
+  color: #001f3f;
+  font-size: 1.2rem;
+}
+
+.navbar-brand a {
   font-size: 1.4rem;
 }
 
-.navbar-brand a:hover{
+.navbar-brand a:hover {
   color: #001f3f;
 }
 
@@ -25,11 +25,10 @@ button.btn.btn-light {
   border: none;
 }
 
-button.btn.btn-light:hover a{
+button.btn.btn-light:hover a {
   color: #fff;
 }
 
-button.btn.btn-light:hover{
+button.btn.btn-light:hover {
   background-color: #fe643df4;
-  
 }

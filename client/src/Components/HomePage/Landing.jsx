@@ -1,10 +1,6 @@
-import "./Landing.css"
+import "./Landing.css";
 
 const Landing = () => {
-  return (
-    <>
-      
-    </>
-  );
-}
+  return <></>;
+};
 export default Landing;
