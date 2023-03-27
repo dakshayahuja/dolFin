@@ -5,15 +5,15 @@ const Footer = () => (
   <footer className="page-footer font-small blue pt-4">
     <div className="container-fluid text-center text-md-left">
       <div className="row">
-        <div className="col-md-6 mt-md-0 mt-3">
-          <h5 className="text-uppercase">dolFin</h5>
-          <p>Investment Solutions That Work For You.</p>
+        <div className="col-md-6 my-auto">
+          <h5>DOLFIN - Investment Solutions That Work For You.</h5>
+          <p className="pt-3"><span className="fw-bold">Contact Us:</span> dolfin@gmail.com</p>
         </div>
 
         <hr className="clearfix w-100 d-md-none pb-0" />
 
         <div className="col-md-3 mb-md-0 mb-3">
-          <h5 className="text-uppercase">Pages</h5>
+          <h5 className="text-uppercase pb-md-1">Pages</h5>
           <ul className="list-unstyled">
             <li>
               <Link to="/stocks">Stocks</Link>
@@ -28,19 +28,19 @@ const Footer = () => (
         </div>
 
         <div className="col-md-3 mb-md-0 mb-3">
-          <h5 className="text-uppercase">Links</h5>
+          <h5 className="text-uppercase pb-md-1">References</h5>
           <ul className="list-unstyled">
             <li>
-              <a href="#!">Link 1</a>
+              <a href="https://www.moneycontrol.com/">Moneycontrol</a>
             </li>
             <li>
-              <a href="#!">Link 2</a>
+              <a href="https://in.tradingview.com/">TradingView</a>
             </li>
             <li>
-              <a href="#!">Link 3</a>
+              <a href="https://finnhub.io/">Finnhub</a>
             </li>
             <li>
-              <a href="#!">Link 4</a>
+              <a href="https://finance.yahoo.com/">Yahoo Finance</a>
             </li>
           </ul>
         </div>
