@@ -1,5 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap');
+
 .page-footer {
   background-color: #f9f9f9;
+}
+
+Footer{
+  font-family: 'Poppins', sans-serif;
+}
+
+Footer li a{
+  color: #3d405b;
+}
+
+h5.text-uppercase.pb-md-1.fw-semibold{
+  font-size: 1.5em;
 }
 
 #logo_tp {

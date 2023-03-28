@@ -18,7 +18,7 @@ const Footer = () => (
         <hr className="clearfix w-100 d-md-none pb-0" />
 
         <div className="col-md-3 mt-4">
-          <h5 className="text-uppercase pb-md-1">Pages</h5>
+          <h5 className="text-uppercase pb-md-1 fw-semibold">Pages</h5>
           <ul className="list-unstyled">
             <li>
               <Link to="/stocks">Stocks</Link>
@@ -33,7 +33,7 @@ const Footer = () => (
         </div>
 
         <div className="col-md-3 mt-4">
-          <h5 className="text-uppercase pb-md-1">References</h5>
+          <h5 className="text-uppercase pb-md-1 fw-semibold">References</h5>
           <ul className="list-unstyled">
             <li>
               <a href="https://www.moneycontrol.com/">Moneycontrol</a>
