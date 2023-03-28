@@ -22,15 +22,15 @@ a:hover {
   color: #fe633d;
 }
 
-button.btn.btn-light {
+#signup {
   background-color: inherit;
   border: none;
 }
 
-button.btn.btn-light:hover a {
+#signup:hover a {
   color: #fff;
 }
 
-button.btn.btn-light:hover {
+#signup:hover {
   background-color: #fe643df4;
 }

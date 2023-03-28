@@ -1,4 +1,3 @@
-import "./Landing.css";
 import Header from "../UI/Header";
 import logo from "../../Assets/logo-transparent.png";
 
@@ -7,22 +6,28 @@ const Landing = () => {
     <>
       <Header
         bgColor="#BBD6B8"
-        title="Invest in Stock Market " 
-        description="Search for your next home with our easy to use search tool."
+        title="Invest in Stock Markets"
+        button="Get Started"
+        link="stocks"
+        description="Invest smarter with our app's advanced analysis and recommendations."
         img={logo}
       />
 
       <Header
         bgColor="#B2A4FF"
-        title="Find your next home"
-        description="Search for your next home with our easy to use search tool."
+        title="Invest in Mutual Funds with Confidence"
+        button="Start Investing"
+        link="mutualfund"
+        description="Take control of your financial future with our app's all-encompassing information on mutual funds."
         img={logo}
       />
 
       <Header
         bgColor="#FFEBB7"
-        title="Find your next home"
-        description="Search for your next home with our easy to use search tool."
+        title="Invest in Cryptocurrency - the Future of Money"
+        button="Learn More"
+        link="crypto"
+        description="Get a complete picture of the cryptocurrency market, including prices, volumes, and trends with our app."
         img={logo}
       />
     </>

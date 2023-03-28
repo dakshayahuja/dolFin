@@ -1,3 +1,40 @@
 .header{
-  min-height: 80vh;
+  min-height: 75vh;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.header-content{
+  margin: 3em 3em 5em;
+}
+
+.header-text h1{
+  font-size: 4em;
+  font-weight: bold;
+  padding-right:30px ;
+}
+
+.header-text p{
+  font-size: 1.2em;
+}
+
+.btn-header{
+  background-color: inherit;
+  color: #000;
+  border: 1px solid #000;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 1em;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-header:hover{
+  background-color: whitesmoke;
+  color: black;
+}
+
+.btn-header a{
+  text-decoration: none;
+  color: inherit;
 }

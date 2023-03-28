@@ -50,7 +50,7 @@ function AppBar() {
               </Nav>
             </Nav>
             <Nav>
-              <Button variant="light">
+              <Button variant="light" id="signup">
                 <Link to="/signup">Signup</Link>
               </Button>{" "}
             </Nav>
