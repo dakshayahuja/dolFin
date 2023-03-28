@@ -1,5 +1,5 @@
 import "./Navbar.css";
-import logo from "../media/favicon.png";
+import logo from "../Assets/favicon.png";
 import Landing from "./HomePage/Landing";
 import Dashboard from "./HomePage/Dashboard";
 import Signup from "./Account/SignUp";
