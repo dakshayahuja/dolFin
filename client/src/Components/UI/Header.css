@@ -1,16 +1,18 @@
 .header{
   min-height: 75vh;
+  /* max-height: 80vh; */
   font-family: 'Montserrat', sans-serif;
 }
 
 .header-content{
-  margin: 3em 3em 5em;
+  margin: 0 5em;
+  /* padding: 10em 0; */ 
 }
 
 .header-text h1{
   font-size: 4em;
   font-weight: bold;
-  padding-right:30px ;
+  /* padding-right:30px ; */
 }
 
 .header-text p{
@@ -19,8 +21,8 @@
 
 .btn-header{
   background-color: inherit;
-  color: #000;
-  border: 1px solid #000;
+  color: whitesmoke;
+  border: 1px solid whitesmoke;
   padding: 10px 20px;
   border-radius: 5px;
   font-size: 1.2rem;
