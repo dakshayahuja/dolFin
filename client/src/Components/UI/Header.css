@@ -21,8 +21,8 @@
 
 .btn-header{
   background-color: inherit;
-  color: whitesmoke;
-  border: 1px solid whitesmoke;
+  color: white;
+  border: 1px solid white;
   padding: 10px 20px;
   border-radius: 5px;
   font-size: 1.2rem;
@@ -32,7 +32,7 @@
 }
 
 .btn-header:hover{
-  background-color: whitesmoke;
+  background-color: #f9f9f9;
   color: black;
 }
 

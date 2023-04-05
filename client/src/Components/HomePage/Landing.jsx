@@ -9,7 +9,6 @@ const Landing = () => {
     <>
       <Header
         bgColor="#023e8a"
-        textColor="white"
         title="Invest in Stock Markets"
         button="Get Started"
         link="stocks"
@@ -21,7 +20,7 @@ const Landing = () => {
       />
 
       <Header
-        bgColor="#e5989b"
+        bgColor="#037971"
         title="Invest in Mutual Funds with Confidence"
         button="Start Investing"
         link="mutualfund"
@@ -34,7 +33,7 @@ const Landing = () => {
       />
 
       <Header
-        bgColor="#95d5b2"
+        bgColor="#e5989b"
         title="Invest in Cryptocurrency - the Future of Money"
         button="Learn More"
         link="crypto"
