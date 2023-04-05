@@ -9,22 +9,36 @@ const Landing = () => {
     <>
       <Header
         bgColor="#023e8a"
-        title={<span>Invest in <span id="head-title">Stock Markets</span></span>}
+        title={
+          <span>
+            Invest in <span style={{ color: "#fe633d" }}>Stock Markets</span>
+          </span>
+        }
         button="Get Started"
         link="stocks"
         description="Invest smarter with our app's advanced analysis and recommendations."
         img={Stock}
-        className = {"img-fluid"}
+        className={"img-fluid"}
         textPadding="12vw 0 8vw 0"
         imgPadding="6vw 0"
       />
 
       <Header
         bgColor="#037971"
-        title={<span>Invest in <span id="head-title">Mutual Funds</span> with Confidence</span>}
+        title={
+          <span>
+            Invest in <span style={{ color: "#fb8500" }}>Mutual Funds</span>{" "}
+            with Confidence
+          </span>
+        }
         button="Start Investing"
         link="mutualfund"
-        description="Take control of your financial future with our app's all-encompassing information on mutual funds."
+        description={
+          <span>
+            Take control of your financial future with our app's <br></br>{" "}
+            all-encompassing information on mutual funds.
+          </span>
+        }
         img={MF}
         imgHeight="29vw"
         margin="0 0 0 6vw"
@@ -33,13 +47,24 @@ const Landing = () => {
       />
 
       <Header
-        bgColor="#480ca8"
-        title={<span>Invest in <span id="head-title">Cryptocurrency</span> - the Future of Money</span>}
+        // bgColor="#480ca8"
+        bgColor="#e5989b"
+        title={
+          <span>
+            Invest in <span style={{ color: "#073b4c" }}>Cryptocurrency</span> -
+            the Future of Money
+          </span>
+        }
         button="Learn More"
         link="crypto"
-        description="Get a complete picture of the cryptocurrency market, including prices, volumes, and trends with our app."
+        description={
+          <span>
+            Get a complete picture of the cryptocurrency market, including{" "}
+            <br></br> prices, volumes, and trends with our app.
+          </span>
+        }
         img={Crypto}
-        className = {"img-fluid"}
+        className={"img-fluid"}
         textPadding="10vw 2vw 10vw 0"
         imgPadding="8vw 0"
         margin="0 0 0 2.5vw"
