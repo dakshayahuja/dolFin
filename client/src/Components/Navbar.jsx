@@ -16,21 +16,21 @@ const Topbar = () => {
       <ul className="topbar-items">
         <li>
           NIFTY 50 <span className="topbar-sp-1">₹17599.15</span>{" "}
-          <span className="topbar-sp-2"> +42(+0.10%)</span>
+          <span className="topbar-sp-2"> +42 (+0.10%)</span>
         </li>
         <li>
           SENSEX <span className="topbar-sp-1">₹59832.97</span>{" "}
-          <span className="topbar-sp-2"> +143.66(+0.24%)</span>
+          <span className="topbar-sp-2"> +143.66 (+0.24%)</span>
         </li>
         <li>
           BTC/USD <span className="topbar-sp-1">$28135.32</span>{" "}
-          <span className="topbar-sp-2"> +390.54(+1.36%)</span>
+          <span className="topbar-sp-2"> +390.54 (+1.36%)</span>
         </li>
         <li>
           ETH/USD <span className="topbar-sp-1">$1880</span>{" "}
-          <span style={{ color: "red", fontWeight: "normal" }}>
+          <span className="topbar-sp-2" style={{ color: "red" }}>
             {" "}
-            -24.45(-1.3%)
+            -24.45 (-1.3%)
           </span>
         </li>
       </ul>
