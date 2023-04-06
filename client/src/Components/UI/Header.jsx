@@ -5,7 +5,7 @@ const Header = (props) => {
   return (
     <div
       className="container-fluid header"
-      style={{ backgroundColor: props.bgColor, color: "white"}}
+      style={{ backgroundColor: props.bgColor, color: "white" }}
     >
       <div className="row header-content">
         <div

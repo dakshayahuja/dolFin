@@ -2,7 +2,7 @@ import "./Navbar.css";
 import logo from "../Assets/favicon.png";
 import Landing from "./HomePage/Landing";
 import Dashboard from "./HomePage/Dashboard";
-import Login from "./Account/Login"
+import Login from "./Account/Login";
 import Stocks from "./SubPages/Stocks";
 import Crypto from "./SubPages/Crypto";
 import Signup from "./Account/SignUp";
@@ -11,18 +11,32 @@ import { Link, Routes, Route, Outlet } from "react-router-dom";
 import { Nav, Navbar, Button, Container } from "react-bootstrap";
 
 const Topbar = () => {
-  return(
+  return (
     <div className="topbar">
       <ul className="topbar-items">
-        <li>NIFTY 50 <span className="topbar-sp-1">₹17599.15</span> <span className="topbar-sp-2"> +42(+0.10%)</span></li>
-        <li>SENSEX <span className="topbar-sp-1">₹59832.97</span> <span className="topbar-sp-2"> +143.66(+0.24%)</span></li>
-        <li>BTC/USD <span className="topbar-sp-1">$28135.32</span> <span className="topbar-sp-2"> +390.54(+1.36%)</span></li>
-        <li>ETH/USD <span className="topbar-sp-1">$1880</span> <span style={{color: "red", fontWeight: "normal"}}> -24.45(-1.3%)</span></li>
+        <li>
+          NIFTY 50 <span className="topbar-sp-1">₹17599.15</span>{" "}
+          <span className="topbar-sp-2"> +42(+0.10%)</span>
+        </li>
+        <li>
+          SENSEX <span className="topbar-sp-1">₹59832.97</span>{" "}
+          <span className="topbar-sp-2"> +143.66(+0.24%)</span>
+        </li>
+        <li>
+          BTC/USD <span className="topbar-sp-1">$28135.32</span>{" "}
+          <span className="topbar-sp-2"> +390.54(+1.36%)</span>
+        </li>
+        <li>
+          ETH/USD <span className="topbar-sp-1">$1880</span>{" "}
+          <span style={{ color: "red", fontWeight: "normal" }}>
+            {" "}
+            -24.45(-1.3%)
+          </span>
+        </li>
       </ul>
     </div>
-  )
-}
-
+  );
+};
 
 function AppBar() {
   let page = <Landing />;
@@ -37,7 +51,7 @@ function AppBar() {
   pageDecide();
   return (
     <>
-    <Topbar />
+      <Topbar />
       <Navbar collapseOnSelect expand="lg" className="navbar" id="nav1">
         <Container>
           <Navbar.Brand>
@@ -66,7 +80,7 @@ function AppBar() {
               </Nav>
             </Nav>
             <Nav>
-            <Button variant="light" className="login">
+              <Button variant="light" className="login">
                 <Link to="/login">Login</Link>
               </Button>{" "}
             </Nav>

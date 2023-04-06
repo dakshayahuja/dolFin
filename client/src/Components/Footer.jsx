@@ -54,7 +54,11 @@ const Footer = () => (
               </a>
             </li>
             <li>
-              <a href="https://finnhub.io/" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://finnhub.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Finnhub
               </a>
             </li>

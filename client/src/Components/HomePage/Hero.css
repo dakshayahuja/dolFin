@@ -1,52 +1,55 @@
-.hero{
-  /* min-height: 50vw; */
+.hero {
   min-height: 46.5em;
   background: url(../../Assets/graph.png);
   background-color: #1c1c21;
   background-repeat: no-repeat;
   background-position-y: 100%;
-  font-family: 'Poppins';
+  font-family: "Poppins", sans-serif;
 }
-.heading1{
+.heading1 {
   font-size: 3.3em;
   font-weight: 600;
   color: #fff;
   margin-top: 0;
   margin-bottom: 0;
-  padding:  0.5em 0; 
+  padding: 0.5em 0;
 }
-.heading2{
+.heading2 {
   font-size: 4em;
   font-weight: 600;
   color: #eeeeee;
   margin-top: 0;
   margin-bottom: 0;
 }
-.button-top-text{
+.button-top-text {
   font-size: 1.5em;
   font-weight: 600;
   color: #bbbbbb;
   margin-top: 0;
   margin-bottom: 0.7em;
-  padding:  0.5em 0; 
+  padding: 0.5em 0;
+  font-family: "Montserrat", sans-serif;
 }
 
-.button_join{
-  background-color: #fe643df4;
-  width:10em;
+.button_join {
+  /* background-color: #fe643df4; */
+  background: transparent;
+  width: 10em;
   height: 2.5em;
-  border-radius: 15px;
-  color:white;
+  border-radius: 7px;
+  color: #fe643df4;
   border-color: #fe643df4;
   font-weight: bold;
   font-size: 1em;
+  font-family: "Montserrat", sans-serif;
 }
 
-.button_join:hover{
-  color: #fe643df4;
-  background-color: #edf2f4;
+.button_join:hover {
+  color: #edf2f4;
+  background-color: #fe643df4;
+  border-color: #fe643df4;
 }
 
-#hero-text{
+#hero-text {
   padding-top: 6em;
 }

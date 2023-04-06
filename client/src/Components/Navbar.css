@@ -36,17 +36,17 @@ a:hover {
   background-color: #fe643df4;
 }
 
-.topbar{
+.topbar {
   background-color: #f2f2f2;
   color: #1c1c21;
   font-size: smaller;
 }
 
-.topbar ul{
-  padding : 0.3em 1em;
+.topbar ul {
+  padding: 0.3em 1em;
 }
 
-.topbar li{
+.topbar li {
   font-weight: bold;
 }
 
@@ -56,7 +56,7 @@ a:hover {
   justify-content: space-between;
 }
 
-.topbar-sp-1{
+.topbar-sp-1 {
   background-color: #003049;
   color: whitesmoke;
   padding: 0.1em 0.4em;
@@ -64,8 +64,7 @@ a:hover {
   font-weight: normal;
 }
 
-
-.topbar-sp-2{
+.topbar-sp-2 {
   color: green;
   font-weight: normal;
 }
