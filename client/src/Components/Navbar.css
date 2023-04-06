@@ -1,6 +1,6 @@
 .navbar {
   background-color: #1c1c21;
-  padding: 0.8em;
+  padding: 0.3em 0.8em;
   font-family: "Poppins", sans-serif;
   min-height: auto;
 }
@@ -22,15 +22,50 @@ a:hover {
   color: #fe633d;
 }
 
-#signup {
+.login {
   background-color: inherit;
   border: none;
+  /* margin-left: 1em; */
 }
 
-#signup:hover a {
+.login:hover a {
   color: #fff;
 }
 
-#signup:hover {
+.login:hover {
   background-color: #fe643df4;
+}
+
+.topbar{
+  background-color: #f2f2f2;
+  color: #1c1c21;
+  font-size: smaller;
+}
+
+.topbar ul{
+  padding : 0.3em 1em;
+}
+
+.topbar li{
+  font-weight: bold;
+}
+
+.topbar-items {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.topbar-sp-1{
+  background-color: #003049;
+  color: whitesmoke;
+  padding: 0.1em 0.4em;
+  border-radius: 7.5px;
+  font-weight: normal;
+}
+
+
+.topbar-sp-2{
+  color: green;
+  font-weight: normal;
 }

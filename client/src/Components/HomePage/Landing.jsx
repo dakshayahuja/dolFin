@@ -49,11 +49,11 @@ const Landing = () => {
         />
 
         <Header
-          // bgColor="#480ca8"
-          bgColor="#e5989b"
+          bgColor="#ce4257"
+          // bgColor="#e5989b"
           title={
             <span>
-              Invest in <span style={{ color: "#073b4c" }}>Cryptocurrency</span>{" "}
+              Invest in <span style={{ color: "#023047" }}>Cryptocurrency</span>{" "}
               - the Future of Money
             </span>
           }
