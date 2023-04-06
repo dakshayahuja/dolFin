@@ -1,5 +1,5 @@
 import "./Footer.css";
-import logo_tp from "../Assets/logo-transparent.png";
+import logo_tp from "../Assets/logo-light.png";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -36,16 +36,36 @@ const Footer = () => (
           <h5 className="text-uppercase pb-md-1 fw-semibold">References</h5>
           <ul className="list-unstyled">
             <li>
-              <a href="https://www.moneycontrol.com/">Moneycontrol</a>
+              <a
+                href="https://www.moneycontrol.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Moneycontrol
+              </a>
             </li>
             <li>
-              <a href="https://in.tradingview.com/">TradingView</a>
+              <a
+                href="https://in.tradingview.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                TradingView
+              </a>
             </li>
             <li>
-              <a href="https://finnhub.io/">Finnhub</a>
+              <a href="https://finnhub.io/" target="_blank" rel="noopener noreferrer">
+                Finnhub
+              </a>
             </li>
             <li>
-              <a href="https://finance.yahoo.com/">Yahoo Finance</a>
+              <a
+                href="https://finance.yahoo.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Yahoo Finance
+              </a>
             </li>
           </ul>
         </div>

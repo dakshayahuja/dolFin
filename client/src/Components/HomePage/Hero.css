@@ -1,0 +1,9 @@
+#hero{
+  min-height: calc(100vw - 45em);
+  /* 4.324375em  8.76932826362484vh */
+  background: url(../../Assets/graph.png);
+  background-color: #1c1c21;
+  background-repeat: no-repeat;
+  background-position-y: 100%;
+
+}

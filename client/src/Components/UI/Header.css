@@ -1,25 +1,23 @@
-.header{
+.header {
   min-height: 75vh;
-  /* max-height: 80vh; */
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
+  /* position: relative; */
 }
 
-.header-content{
+.header-content {
   margin: 0 5em;
-  /* padding: 10em 0; */ 
 }
 
-.header-text h1{
+.header-text h1 {
   font-size: 4em;
   font-weight: bold;
-  /* padding-right:30px ; */
 }
 
-.header-text p{
+.header-text p {
   font-size: 1.2em;
 }
 
-.btn-header{
+.btn-header {
   background-color: inherit;
   color: white;
   border: 1px solid white;
@@ -31,12 +29,12 @@
   transition: all 0.2s ease-in-out;
 }
 
-.btn-header:hover{
+.btn-header:hover {
   background-color: #f9f9f9;
   color: black;
 }
 
-.btn-header a{
+.btn-header a {
   text-decoration: none;
   color: inherit;
 }

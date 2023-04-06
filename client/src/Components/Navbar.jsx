@@ -22,7 +22,7 @@ function AppBar() {
   pageDecide();
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" className="navbar">
+      <Navbar collapseOnSelect expand="lg" className="navbar" id="nav1">
         <Container>
           <Navbar.Brand>
             <Link to="/">
@@ -58,7 +58,6 @@ function AppBar() {
         </Container>
       </Navbar>
       <Outlet />
-
       <Routes>
         <Route path="/" element={page} />
         <Route path="/stocks" element={<Stocks />} />

@@ -1,0 +1,25 @@
+body {
+  text-align: center;
+}
+
+#logo {
+  width: 100vw;
+  padding: 10em 7em 7em;
+}
+
+h3 {
+  font-size: 5em;
+  color: #dee2e6;
+  padding: 0em 1em;
+}
+
+h5 {
+  font-size: 3.5em;
+  padding: 2.5em 0 0em;
+}
+
+p {
+  font-size: 2em;
+  padding-top: 8em;
+  color: #adb5bd;
+}
