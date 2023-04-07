@@ -1,9 +1,10 @@
 .hero {
-  min-height: 46.5em;
+  min-height: 47.25em;
   background: url(../../Assets/graph.png);
   background-color: #1c1c21;
   background-repeat: no-repeat;
   background-position-y: 100%;
+  background-size: contain;
   font-family: "Poppins", sans-serif;
 }
 .heading1 {
