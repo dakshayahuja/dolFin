@@ -1,4 +1,4 @@
-import "./Footer.css";
+import "../Styles/footer.css";
 import logo_tp from "../Assets/logo-light.png";
 import React from "react";
 import { Link } from "react-router-dom";

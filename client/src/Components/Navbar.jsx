@@ -1,4 +1,4 @@
-import "./Navbar.css";
+import "../Styles/navbar.css";
 import logo from "../Assets/favicon.png";
 import Landing from "./HomePage/Landing";
 import Dashboard from "./HomePage/Dashboard";

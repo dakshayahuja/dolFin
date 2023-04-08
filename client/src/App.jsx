@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import Footer from "./Components/Footer";
 import AppBar from "./Components/Navbar";
-import MobileView from "./Components/UI/MobileView";
+import MobileView from "./Components/MobileView";
 
 const Desktop = () => {
   return (
