@@ -17,7 +17,7 @@ const LoginNavbar = () => {
   return (
     <Navbar className="login-navbar" >
       <Container fluid>
-        <Navbar.Brand href="#">
+        <Navbar.Brand>
           <img
             src={logo}
             alt="Logo"
