@@ -55,7 +55,7 @@ const LoginPage = () => {
       errors.username = "Username is required";
     }
 
-    if (password === "") {
+    if (password === "" || confirmPassword === "") {
       isValid = false;
       errors.password = "Password is required";
     }
@@ -90,10 +90,10 @@ const LoginPage = () => {
               <LoginNavbar />
             </Col>
           </Row>
-          <Col className="login-form-col" style={{ marginTop: "2em" }}>
+          <Col className="login-form-col" style={{ marginTop: "1em" }}>
             <div className="login-form-container">
               <h2 className="text-center">Sign Up</h2>
-              <Form onSubmit={handleSubmit} style={{ marginTop: "2em" }}>
+              <Form onSubmit={handleSubmit} style={{ marginTop: "1em" }}>
                 <Form.Group className="mb-3">
                   <Form.Label>Username</Form.Label>
                   <Form.Control
@@ -141,6 +141,9 @@ const LoginPage = () => {
                   />
                   {errors.confirmPassword && (
                     <div className="text-danger">{errors.confirmPassword}</div>
+                  )}
+                  {errors.password && (
+                    <div className="text-danger">{errors.password}</div>
                   )}
                 </Form.Group>
                 <Form.Group className="text-center">
