@@ -5,6 +5,20 @@ import "../../Styles/login-signup.css";
 import { Link } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 
+import {
+  MDBBtn,
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBCard,
+  MDBCardBody,
+  MDBInput,
+  MDBIcon,
+  MDBCheckbox
+}
+from 'mdb-react-ui-kit';
+
+
 const LoginNav = () => {
   return (
     <div className="row">
@@ -84,7 +98,7 @@ const Login = () => {
   // JSX code for login form
   const renderForm = (
     <div className="form text-center">
-      <form onSubmit={handleSubmit}>
+      <form className="text-center"onSubmit={handleSubmit}>
         <div className="input-container">
           <label>Username </label>
           <input type="text" name="uname" required />
@@ -101,7 +115,6 @@ const Login = () => {
       </form>
     </div>
   );
-
   return (
     <>
       <div className="container-fluid">
@@ -110,15 +123,49 @@ const Login = () => {
             <img src={login} alt="login-banner" id="login-img" />
           </div>
           <div className="col-6" id="login-form-div">
-            <div className="login-form">
               <LoginNav />
-              <div id="sign-in-button"className="title text-center fw-bold fs-2">Sign In</div>
+            {/* <div>
+              <div id="sign-in-button"className="text-center fw-bold fs-2">Sign In</div>
               {isSubmitted ? (
                 <div>User is successfully logged in</div>
               ) : (
                 renderForm
               )}
-            </div>
+            </div> */}
+            <MDBContainer fluid>
+
+      <MDBRow className='d-flex justify-content-center align-items-center h-100'>
+        <MDBCol col='12'>
+
+          <MDBCard className='bg-white my-5 mx-auto' style={{borderRadius: '1rem', maxWidth: '500px'}}>
+            <MDBCardBody className='p-5 w-100 d-flex flex-column'>
+
+              <h2 className="fw-bold mb-2 text-center">Sign in</h2>
+              <p className="text-white-50 mb-3">Please enter your login and password!</p>
+
+              <MDBInput wrapperClass='mb-4 w-100' label='Email address' id='formControlLg' type='email' size="lg"/>
+              <MDBInput wrapperClass='mb-4 w-100' label='Password' id='formControlLg' type='password' size="lg"/>
+
+              <MDBCheckbox name='flexCheck' id='flexCheckDefault' className='mb-4' label='Remember password' />
+
+              <MDBBtn size='lg'>
+                Login
+              </MDBBtn>
+
+              <hr className="my-4" />
+
+              <MDBBtn className="mb-2 w-100" size="lg" style={{backgroundColor: '#dd4b39'}}>
+                <MDBIcon fab icon="google" className="mx-2"/>
+                Sign in with google
+              </MDBBtn>
+
+            </MDBCardBody>
+          </MDBCard>
+
+        </MDBCol>
+      </MDBRow>
+
+    </MDBContainer>
           </div>
         </div>
       </div>
