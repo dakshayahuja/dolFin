@@ -1,26 +1,79 @@
-#login-img-div{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.login-navbar {
+  background-color: #ffffff !important;
+  font-size: 1rem;
+  margin: 0%;
+  padding: 0%;
 }
 
-#login-img{
-  width: 80%;
+.login-navbar .navbar-brand {
+  font-weight: bold;
+  color: #1c1c21;
 }
 
-#home-signup{
-  display:flex;
-  justify-content:space-around;
+.login-navbar .navbar-nav .nav-link, signup-link {
+  color: #1c1c21;
+  padding-left: 1.5rem;
+  /* padding-right: 1.5rem; */
+  font-weight: 500;
 }
-#login-form-div{
+
+.login-navbar .navbar-nav .nav-link:hover, signup-link:hover {
+  color: #fe633d;
+  text-decoration: none;
+}
+
+.login-img-col {
+  position: relative;
+  min-height: 100vh;
+}
+
+.login-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40vw;
+  transform: translate(-50%, -50%);
+}
+
+.login-page {
+  min-height: 100vh;
   font-family: "Poppins", sans-serif;
-  background-color: white;
-  color:black;
-}
-#login-nav-logo span{
-  font-size:2em;
 }
 
-#sign-in-button{
-  margin-top:30%;
+.login-form-col {
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+}
+
+.login-form-container {
+  width: 100%;
+  max-width: 30vw;
+  padding: 2rem;
+}
+
+.signup_login, .signup_login a{
+  background-color: #023047;
+  color: white;
+  border: none;
+  padding: 0.5em 2em;
+}
+
+.signup_login:hover{
+  background-color: #fe633d;
+}
+
+.signup-link{
+  color: white;
+  background-color: #023047;
+  padding: 7px 8px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.signup-link:hover{
+  background-color: #fe633d;
+  color: white;
 }

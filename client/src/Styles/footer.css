@@ -9,6 +9,7 @@ Footer {
 
 Footer li a {
   color: #7a7c82;
+  text-decoration: none;
 }
 
 h5.text-uppercase.pb-md-1.fw-semibold {

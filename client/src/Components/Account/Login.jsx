@@ -1,176 +1,127 @@
 import React, { useState } from "react";
-import login from "../../Assets/login.png";
-import logo from "../../Assets/favicon.png";
-import "../../Styles/login-signup.css";
-import { Link } from "react-router-dom";
-import { Nav } from "react-bootstrap";
-
 import {
-  MDBBtn,
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBCard,
-  MDBCardBody,
-  MDBInput,
-  MDBIcon,
-  MDBCheckbox
-}
-from 'mdb-react-ui-kit';
+  Container,
+  Row,
+  Col,
+  Form,
+  Button,
+  Navbar,
+  Nav,
+} from "react-bootstrap";
+import loginImg from "../../Assets/login.png";
+import logo from "../../Assets/favicon.png";
+import { useNavigate } from "react-router-dom";
+import "../../Styles/login-signup.css";
 
-
-const LoginNav = () => {
+const LoginNavbar = () => {
   return (
-    <div className="row">
-      <div className="col-6" id="login-nav-logo">
-        <img
-          src={logo}
-          alt="logo"
-          width="60"
-          height="60"
-          className="d-inline-block align-top"
-        />{" "}
-        <span>dolFin</span>
-      </div>
-      <div className="col-6" id="home-signup">
-        <Nav style={{ color: "black" }}>
-          <Link to="/">Home</Link>
-        </Nav>
-        <Nav>
-          <Link to="/signup">Sign Up</Link>
-        </Nav>
-      </div>
-    </div>
+    <Navbar className="login-navbar" >
+      <Container fluid>
+        <Navbar.Brand href="#">
+          <img
+            src={logo}
+            alt="Logo"
+            width="30"
+            height="30"
+            className="d-inline-block align-top"
+          />{" "}
+          dolFin
+        </Navbar.Brand>
+          <Nav className="ms-auto">
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/signup">Sign Up</Nav.Link>
+          </Nav>
+      </Container>
+    </Navbar>
   );
 };
 
-const Login = () => {
-  // React States
-  const [errorMessages, setErrorMessages] = useState({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  // User Login info
-  const database = [
-    {
-      username: "user1",
-      password: "pass1",
-    },
-    {
-      username: "user2",
-      password: "pass2",
-    },
-  ];
-
-  const errors = {
-    uname: "invalid username",
-    pass: "invalid password",
-  };
+const LoginPage = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
-    //Prevent page reload
     event.preventDefault();
 
-    var { uname, pass } = document.forms[0];
+    let isValid = true;
+    let errors = {};
 
-    // Find user login info
-    const userData = database.find((user) => user.username === uname.value);
+    if (username === "") {
+      isValid = false;
+      errors.username = "Username is required";
+    }
 
-    // Compare user info
-    if (userData) {
-      if (userData.password !== pass.value) {
-        // Invalid password
-        setErrorMessages({ name: "pass", message: errors.pass });
-      } else {
-        setIsSubmitted(true);
-      }
-    } else {
-      // Username not found
-      setErrorMessages({ name: "uname", message: errors.uname });
+    if (password === "") {
+      isValid = false;
+      errors.password = "Password is required";
+    }
+
+    setErrors(errors);
+
+    if (isValid) {
+      alert("User has signed in successfully");
+      navigate("/");
     }
   };
 
-  // Generate JSX code for error message
-  const renderErrorMessage = (name) =>
-    name === errorMessages.name && (
-      <div className="error">{errorMessages.message}</div>
-    );
-
-  // JSX code for login form
-  const renderForm = (
-    <div className="form text-center">
-      <form className="text-center"onSubmit={handleSubmit}>
-        <div className="input-container">
-          <label>Username </label>
-          <input type="text" name="uname" required />
-          {renderErrorMessage("uname")}
-        </div>
-        <div className="input-container">
-          <label>Password </label>
-          <input type="password" name="pass" required />
-          {renderErrorMessage("pass")}
-        </div>
-        <div className="button-container">
-          <input type="submit" value="Sign In" className="btn btn-danger" />
-        </div>
-      </form>
-    </div>
-  );
   return (
-    <>
-      <div className="container-fluid">
-        <div className="row" style={{ minHeight: "100vh" }}>
-          <div className="col-6" id="login-img-div">
-            <img src={login} alt="login-banner" id="login-img" />
+    <Container fluid>
+      <Row className="login-page align-items-start">
+        <Col md={6}  className="login-img-col">
+          <img className="login-image" src={loginImg} alt="Login" />
+        </Col>
+        <Col md={6} style={{backgroundColor: "#fff", minHeight: "100vh"}}>
+          <Row>
+            <Col md={12}>
+              <LoginNavbar />
+            </Col>
+          </Row>
+          <Col className="login-form-col" style={{ marginTop: "6em"}}>
+          <div className="login-form-container">
+            <h2 className="text-center">Sign In</h2>
+            <Form onSubmit={handleSubmit} style={{marginTop: "3em"}}>
+              <Form.Group className="mb-3">
+                <Form.Label>Username</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+                {errors.username && (
+                  <div className="text-danger">{errors.username}</div>
+                )}
+              </Form.Group>
+
+              <Form.Group className="mb-3">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Enter password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                {errors.password && (
+                  <div className="text-danger">{errors.password}</div>
+                )}
+              </Form.Group>
+              <Form.Group className="text-center">
+              <Button className="signup_login" type="submit">
+                Sign In
+              </Button>
+              </Form.Group>
+            </Form>
+            <p className="text-center" style={{marginTop:"5em"}}>
+              Don't have an account? <a href="/signup" className="signup-link">Sign Up</a>
+            </p>
           </div>
-          <div className="col-6" id="login-form-div">
-              <LoginNav />
-            {/* <div>
-              <div id="sign-in-button"className="text-center fw-bold fs-2">Sign In</div>
-              {isSubmitted ? (
-                <div>User is successfully logged in</div>
-              ) : (
-                renderForm
-              )}
-            </div> */}
-            <MDBContainer fluid>
-
-      <MDBRow className='d-flex justify-content-center align-items-center h-100'>
-        <MDBCol col='12'>
-
-          <MDBCard className='bg-white my-5 mx-auto' style={{borderRadius: '1rem', maxWidth: '500px'}}>
-            <MDBCardBody className='p-5 w-100 d-flex flex-column'>
-
-              <h2 className="fw-bold mb-2 text-center">Sign in</h2>
-              <p className="text-white-50 mb-3">Please enter your login and password!</p>
-
-              <MDBInput wrapperClass='mb-4 w-100' label='Email address' id='formControlLg' type='email' size="lg"/>
-              <MDBInput wrapperClass='mb-4 w-100' label='Password' id='formControlLg' type='password' size="lg"/>
-
-              <MDBCheckbox name='flexCheck' id='flexCheckDefault' className='mb-4' label='Remember password' />
-
-              <MDBBtn size='lg'>
-                Login
-              </MDBBtn>
-
-              <hr className="my-4" />
-
-              <MDBBtn className="mb-2 w-100" size="lg" style={{backgroundColor: '#dd4b39'}}>
-                <MDBIcon fab icon="google" className="mx-2"/>
-                Sign in with google
-              </MDBBtn>
-
-            </MDBCardBody>
-          </MDBCard>
-
-        </MDBCol>
-      </MDBRow>
-
-    </MDBContainer>
-          </div>
-        </div>
-      </div>
-    </>
+          </Col>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
-export default Login;
+export default LoginPage;
