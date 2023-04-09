@@ -1,4 +1,11 @@
-import React from "react";
+import AppBar from "../Navbar";
+import Footer from "../Footer";
 export default function Crypto() {
-  return <>Crypto</>;
+  return (
+    <>
+      <AppBar /> 
+      Crypto
+      <Footer />
+    </>
+  );
 }

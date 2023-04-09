@@ -1,0 +1,30 @@
+body{
+    font-family: "Poppins", sans-serif;
+}
+
+#login-img-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#login-img{
+  /* padding: 6em; */
+  width: 80%;
+}
+
+#home-signup{
+  display:flex;
+  justify-content:space-around;
+}
+#login-form-div{
+  background-color: white;
+  color: black;
+}
+#login-nav-logo span{
+  font-size:2em;
+}
+
+#sign-in-button{
+  margin-top:30%;
+}

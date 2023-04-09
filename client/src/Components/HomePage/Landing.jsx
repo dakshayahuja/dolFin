@@ -3,10 +3,13 @@ import Stock from "../../Assets/stock.png";
 import Crypto from "../../Assets/crypto.png";
 import MF from "../../Assets/MF.png";
 import Hero from "../UI/Hero";
+import AppBar from "../Navbar";
+import Footer from "../Footer";
 
 const Landing = () => {
   return (
     <>
+    <AppBar />
       <Hero />
       <div>
         <Header
@@ -72,6 +75,7 @@ const Landing = () => {
           margin="0 0 0 2.5vw"
         />
       </div>
+      <Footer />
     </>
   );
 };

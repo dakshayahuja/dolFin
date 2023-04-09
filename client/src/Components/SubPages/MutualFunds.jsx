@@ -1,4 +1,10 @@
 import React from "react";
+import AppBar from "../Navbar";
+import Footer from "../Footer";
 export default function MutualFunds() {
-  return <>MFS</>;
+  return <>
+    <AppBar />
+    MFS
+    <Footer />
+    </>;
 }

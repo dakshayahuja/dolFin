@@ -1,13 +1,6 @@
 import "../Styles/navbar.css";
 import logo from "../Assets/favicon.png";
-import Landing from "./HomePage/Landing";
-import Dashboard from "./HomePage/Dashboard";
-import Login from "./Account/Login";
-import Stocks from "./SubPages/Stocks";
-import Crypto from "./SubPages/Crypto";
-import Signup from "./Account/SignUp";
-import MutualFunds from "./SubPages/MutualFunds";
-import { Link, Routes, Route, Outlet } from "react-router-dom";
+import { Link,  Outlet } from "react-router-dom";
 import { Nav, Navbar, Button, Container } from "react-bootstrap";
 
 const Topbar = () => {
@@ -39,16 +32,6 @@ const Topbar = () => {
 };
 
 function AppBar() {
-  let page = <Landing />;
-  const pageDecide = () => {
-    var login = false;
-    if (login === true) {
-      page = <Dashboard />;
-    } else {
-      page = <Landing />;
-    }
-  };
-  pageDecide();
   return (
     <>
       <Topbar />
@@ -88,15 +71,6 @@ function AppBar() {
         </Container>
       </Navbar>
       <Outlet />
-      <Routes>
-        <Route path="/" element={page} />
-        <Route path="/stocks" element={<Stocks />} />
-        <Route path="/mutualfund" element={<MutualFunds />} />
-        <Route path="/crypto" element={<Crypto />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="*" element={<h1>404 Not Found</h1>} />
-      </Routes>
     </>
   );
 }

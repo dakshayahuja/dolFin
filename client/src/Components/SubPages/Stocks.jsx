@@ -1,4 +1,11 @@
-import React from "react";
+import AppBar from "../Navbar";
+import Footer from "../Footer";
 export default function Stocks() {
-  return <>Stocks</>;
+  return (
+    <>
+      <AppBar />
+      Stocks
+      <Footer />
+    </>
+  );
 }
