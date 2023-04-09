@@ -9,7 +9,7 @@ MERN App in development to help people choose and understand which stocks, mutua
 <li><a href="https://github.com/abhinavnandrajog">Abhinav Nandrajog </a></li>
 
 ##### Steps to run project on your system:
-• Clone the repository or download it as zip.
-• Go to client directory - `cd client`
-• Install dependencies -  `yarn install`
-• Run the project - `yarn start`
+1. Clone the repository or download it as zip.
+2. Go to client directory - ```cd client```
+3. Install dependencies -  ```yarn install```
+4. Run the project - ```yarn start```
