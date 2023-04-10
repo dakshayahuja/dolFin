@@ -35,8 +35,8 @@ export default function TradingViewWidget() {
       ) {
         new window.TradingView.widget({
           width: 1200,
-          height: 600,
-          symbol: "BSE:RELIANCE",
+          height: 700,
+          symbol: "BSE:INFY",
           interval: "D",
           timezone: "Etc/UTC",
           theme: "dark",
@@ -60,7 +60,7 @@ export default function TradingViewWidget() {
   }, []);
 
   return (
-    <div className="tradingview-widget-container pt-5">
+    <div className="tradingview-widget-container pt-4">
       <div id="tradingview_e5d41" />
     </div>
   );
