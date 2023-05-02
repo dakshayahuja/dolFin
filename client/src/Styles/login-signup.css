@@ -7,17 +7,19 @@
 
 .login-navbar .navbar-brand {
   font-weight: bold;
-  color: #1c1c21;
+  color: #161a1d;
 }
 
-.login-navbar .navbar-nav .nav-link, signup-link {
-  color: #1c1c21;
+.login-navbar .navbar-nav .nav-link,
+signup-link {
+  color: #161a1d;
   padding-left: 1.5rem;
   /* padding-right: 1.5rem; */
   font-weight: 500;
 }
 
-.login-navbar .navbar-nav .nav-link:hover, signup-link:hover {
+.login-navbar .navbar-nav .nav-link:hover,
+signup-link:hover {
   color: #fe633d;
   text-decoration: none;
 }
@@ -54,18 +56,19 @@
   padding: 2rem;
 }
 
-.signup_login, .signup_login a{
+.signup_login,
+.signup_login a {
   background-color: #023047;
   color: white;
   border: none;
   padding: 0.5em 2em;
 }
 
-.signup_login:hover{
+.signup_login:hover {
   background-color: #fe633d;
 }
 
-.signup-link{
+.signup-link {
   color: white;
   background-color: #023047;
   padding: 7px 8px;
@@ -73,7 +76,7 @@
   text-decoration: none;
 }
 
-.signup-link:hover{
+.signup-link:hover {
   background-color: #fe633d;
   color: white;
 }
