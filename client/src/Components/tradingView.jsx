@@ -4,7 +4,8 @@ import React, { useEffect, useRef } from "react";
 
 let tvScriptLoadingPromise;
 
-export default function TradingViewWidget() {
+export default function TradingViewWidget(props) {
+  const ticker = props.ticker;
   const onLoadScriptRef = useRef();
 
   useEffect(() => {
@@ -36,7 +37,7 @@ export default function TradingViewWidget() {
         new window.TradingView.widget({
           width: 1200,
           height: 700,
-          symbol: "BSE:INFY",
+          symbol: `${ticker}`,
           interval: "D",
           timezone: "Etc/UTC",
           theme: "dark",
@@ -60,7 +61,7 @@ export default function TradingViewWidget() {
   }, []);
 
   return (
-    <div className="tradingview-widget-container pt-4">
+    <div className="tradingview-widget-container">
       <div id="tradingview_e5d41" />
     </div>
   );
