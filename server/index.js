@@ -30,3 +30,26 @@ finnhubClient.companyBasicFinancials(
     console.log(data.metric.beta);
   }
 );
+
+import axios from "axios";
+const options = {
+  method: 'GET',
+  url: 'https://latest-stock-price.p.rapidapi.com/price',
+  params: {
+    Indices: 'NIFTY 50'
+  },
+  headers: {
+    'X-RapidAPI-Key': '0e149974edmsha892d922ccea2edp114ac6jsn3c48a5e07673',
+    'X-RapidAPI-Host': 'latest-stock-price.p.rapidapi.com'
+  }
+};
+
+try {
+  const response = await axios.request(options);
+  const lastPrice = response.data[0].lastPrice;
+  // Data[0].lastPrice = lastPrice; // Assign the lastPrice to the first object in the array
+  console.log(lastPrice);
+} catch (error) {
+  console.error(error);
+}
+

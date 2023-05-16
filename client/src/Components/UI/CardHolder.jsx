@@ -9,6 +9,7 @@ const CardHolder = (props) => {
   if (!props.data) {
     return null;
   }
+ 
   return (
     <div className="container mt-4">
       <h4>{props.title}</h4>

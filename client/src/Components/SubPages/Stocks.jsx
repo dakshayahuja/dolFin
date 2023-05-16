@@ -1,6 +1,7 @@
 import AppBar from "../Navbar";
 import Footer from "../Footer";
 import CardHolder from "../UI/CardHolder";
+
 const Data = [
   {
     id: 0,
@@ -9,13 +10,13 @@ const Data = [
     img: "https://cdn.indiawealth.in/cdn-cgi/image/quality=90,format=auto,metadata=copyright,width=100/https://cdn.indiawealth.in/public/images/Niffty50.png",
     ticker: "NIFTY50"
   },
-  {
-    id: 1,
-    title: "SENSEX",
-    prices: "Prices - Up",
-    img: "https://cdn.indiawealth.in/cdn-cgi/image/quality=90,format=auto,metadata=copyright,width=100/https://cdn.indiawealth.in/public/images/Sensex.png",
-    ticker: "SENSEX"
-  },
+  // {
+  //   id: 1,
+  //   title: "SENSEX",
+  //   prices: "Prices - Up",
+  //   img: "https://cdn.indiawealth.in/cdn-cgi/image/quality=90,format=auto,metadata=copyright,width=100/https://cdn.indiawealth.in/public/images/Sensex.png",
+  //   ticker: "SENSEX"
+  // },
   {
     id: 2,
     title: "S&P 500",
@@ -38,11 +39,14 @@ const Data = [
     ticker: "DJI"
   },
 ];
+
 export default function Stocks() {
+  
   return (
     <>
       <AppBar />
       <CardHolder data={Data} title="Major Indices" />
+      
       <Footer />
     </>
   );
