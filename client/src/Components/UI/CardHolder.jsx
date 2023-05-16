@@ -29,6 +29,7 @@ const CardHolder = (props) => {
                 <Card
                   title={data.title}
                   prices={data.prices}
+                  change={data.change}
                   imgUrl={data.img}
                   ticker = {data.ticker}
                 />

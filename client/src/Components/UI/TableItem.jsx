@@ -1,12 +1,14 @@
-const TableItem = () => {
+function TableItem({ item }) {
+  const changeClass = item.change >= 0 ? "positive" : "negative";
+  const pChangeClass = item.pChange >= 0 ? "positive" : "negative";
+
   return (
     <tr>
-      <td>KOTAKBANK</td>
-      <td>Kotak Mahindra Bank</td>
-      <td>₹1940</td>
-      <td>-33</td>
-      <td>-1.67%</td>
-      <td>4569497</td>
+      <td>{item.symbol}</td>
+      <td>₹ {item.lastPrice}</td>
+      <td className={changeClass}>{item.change}</td>
+      <td className={pChangeClass}>{item.pChange}%</td>
+      <td>{item.totalTradedVolume}</td>
     </tr>
   );
 }

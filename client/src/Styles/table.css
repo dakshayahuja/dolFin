@@ -1,4 +1,27 @@
 table{
   font-family: Poppins;
+  background: rgba(6, 7, 8, 0.349);
+  color: #edf2f4;
 }
 
+td, th{
+  border: solid 1px #343a40;
+  padding: 0.5em 0.7em;
+  margin: auto;
+}
+
+table th{
+  font-size: large;
+  color: black;
+  background-color:#fe643df4;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.positive{
+  color: #52b788;
+}
+
+.negative{
+  color: #ef233c;
+}

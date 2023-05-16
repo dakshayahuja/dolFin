@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import finnhub from "finnhub";
 
 const app = new express();
-const port = 2000;
+const port = 3000;
 const MONGO_URL = "mongodb+srv://dakshay:dolFin@cluster.aufzslf.mongodb.net/?retryWrites=true&w=majority";
 
 mongoose.connect(MONGO_URL).then(() => {
@@ -46,8 +46,7 @@ const options = {
 
 try {
   const response = await axios.request(options);
-  const lastPrice = response.data;
-  // Data[0].lastPrice = lastPrice; // Assign the lastPrice to the first object in the array
+  const lastPrice = response.data[0].lastPrice;
   console.log(lastPrice);
 } catch (error) {
   console.error(error);

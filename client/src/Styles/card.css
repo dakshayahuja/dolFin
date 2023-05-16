@@ -94,3 +94,11 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active{
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
 }
+
+.positive{
+  color: #52b788;
+}
+
+.negative{
+  color: #ef233c;
+}
