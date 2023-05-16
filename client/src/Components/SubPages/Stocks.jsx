@@ -1,7 +1,7 @@
 import AppBar from "../Navbar";
 import Footer from "../Footer";
 import CardHolder from "../UI/CardHolder";
-import TableItems from "../UI/TableItems";
+import TableContainer from "../UI/TableContainer";
 
 const Data = [
   {
@@ -41,13 +41,15 @@ const Data = [
   },
 ];
 
+
+
 export default function Stocks() {
   
   return (
     <>
       <AppBar />
       <CardHolder data={Data} title="Major Indices" />
-      <TableItems />
+      <TableContainer />
       <Footer />
     </>
   );
