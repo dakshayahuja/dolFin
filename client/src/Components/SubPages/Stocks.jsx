@@ -73,16 +73,17 @@ export default function Stocks() {
           lastPrice2 = storedData.lastPrice2;
           change2 = storedData.change2;
           pChange2 = storedData.pChange2;
+          changeSign2 = storedData.changeSign2;
         } else {
           const response2 = await axios.get(
             `https://dolfin-backend.herokuapp.com/api/stock-price/${symbol}`
           );
           lastPrice2 = parseFloat(response2.data.close).toFixed(2);
-          var changeSign = "";
+          var changeSign2 = "";
           if (response2.data.change.charAt(0) == "+") {
-            changeSign = "+";
+            changeSign2 = "+";
           } else if (response2.data.percent_change.charAt(0) == "-") {
-            changeSign = "-";
+            changeSign2 = "-";
           }
           change2 = parseFloat(response2.data.change.slice(1)).toFixed(2);
           pChange2 = parseFloat(response2.data.percent_change.slice(1)).toFixed(
@@ -96,6 +97,7 @@ export default function Stocks() {
               lastPrice2,
               change2,
               pChange2,
+              changeSign2,
             })
           );
         }
@@ -111,9 +113,9 @@ export default function Stocks() {
           if (item.title === "S&P 500") {
             return {
               ...item,
-              prices: `₹${lastPrice2}`,
-              change: `${changeSign + change2}`,
-              pChange: `(${changeSign + pChange2}%)`,
+              prices: `$${lastPrice2}`,
+              change: `${changeSign2 + change2}`,
+              pChange: `(${changeSign2 + pChange2}%)`,
             };
           }
           return item;
