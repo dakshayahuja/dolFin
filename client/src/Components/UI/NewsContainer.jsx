@@ -3,14 +3,12 @@ import axios from "axios";
 import "../../Styles/news.css";
 export default function NewsContainer() {
   const [articles, setArticles] = useState([]);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
           "https://dolfin-backend.herokuapp.com/api/news"
         );
-        console.log(response.data.articles);
         setArticles(response.data.articles);
       } catch (error) {
         console.error(error);
@@ -18,7 +16,6 @@ export default function NewsContainer() {
     };
     fetchData();
   }, []);
-
   return (
     <>
       <h3

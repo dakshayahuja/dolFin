@@ -37,7 +37,6 @@ function TableContainer() {
           responseData.sort((a, b) => a.symbol.localeCompare(b.symbol));
           localStorage.setItem("stockData", JSON.stringify(responseData));
           localStorage.setItem("lastFetchTime", Date.now());
-          console.log(responseData);
           setData(responseData);
         } catch (error) {
           console.error(error);

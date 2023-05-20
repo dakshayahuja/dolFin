@@ -31,7 +31,7 @@ const CardHolder = (props) => {
                   prices={data.prices}
                   change={data.change}
                   imgUrl={data.img}
-                  ticker = {data.ticker}
+                  ticker = {data.widget_ticker}
                 />
               </SwiperSlide>
             );
