@@ -52,12 +52,68 @@ export default function Stocks() {
         const response = await axios.get(
           "https://dolfin-backend.herokuapp.com/api/stock-price/nifty"
         );
+        const lastPrice = response.data[0].lastPrice;
+        const change = response.data[0].change.toFixed(2);
+        const pChange = response.data[0].pChange.toFixed(2);
+        var changeSign = "";
+        if (change && pChange > 0) {
+          changeSign = "+";
+        } else if (change && pChange < 0) {
+          changeSign = "-";
+        }
+
+        const symbol = "spx";
+        let lastPrice2, change2, pChange2;
+        const storedData = JSON.parse(localStorage.getItem("SP500Data"));
+        const oneDay = 24 * 60 * 60 * 1000;
+        if (
+          storedData &&
+          new Date() - new Date(storedData.timestamp) < oneDay
+        ) {
+          lastPrice2 = storedData.lastPrice2;
+          change2 = storedData.change2;
+          pChange2 = storedData.pChange2;
+        } else {
+          const response2 = await axios.get(
+            `http://dolfin-backend.herokuapp.com/api/stock-price/${symbol}`
+          );
+          lastPrice2 = parseFloat(response2.data.close).toFixed(2);
+          var changeSign = "";
+          if (response2.data.change.charAt(0) == "+") {
+            changeSign = "+";
+          } else if (response2.data.percent_change.charAt(0) == "-") {
+            changeSign = "-";
+          }
+          change2 = parseFloat(response2.data.change.slice(1)).toFixed(2);
+          pChange2 = parseFloat(response2.data.percent_change.slice(1)).toFixed(
+            2
+          );
+
+          localStorage.setItem(
+            "SP500Data",
+            JSON.stringify({
+              timestamp: new Date(),
+              lastPrice2,
+              change2,
+              pChange2,
+            })
+          );
+        }
         const updatedData = data.map((item) => {
           if (item.title === "NIFTY50") {
             return {
               ...item,
-              prices: `₹${response.data[0].lastPrice}`,
-              change: `(${response.data[0].pChange}%)`,
+              prices: `₹${lastPrice}`,
+              change: `${changeSign + change}`,
+              pChange: `(${changeSign + pChange}%)`,
+            };
+          }
+          if (item.title === "S&P 500") {
+            return {
+              ...item,
+              prices: `₹${lastPrice2}`,
+              change: `${changeSign + change2}`,
+              pChange: `(${changeSign + pChange2}%)`,
             };
           }
           return item;

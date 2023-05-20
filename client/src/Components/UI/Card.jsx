@@ -35,14 +35,16 @@ const ModalView = (props) => {
 
 const Card = (props) => {
   const [show, setShow] = useState(false);
-  const changeClass = props.change>0 ? "positive" : "negative";
+  const changeClass =
+    props.change > 0 || props.pChange > 0 ? "positive" : "negative";
   return (
     <div className="cardStyle">
       <div className="mx-2">
         <img src={props.imgUrl} className="w-25 mb-2" alt="..." />
         <h5>{props.title}</h5>
-        <p className="mb-2">
-          {props.prices} <span className={changeClass}>{props.change}</span>
+        <p className="mb-1">{props.prices} </p>
+        <p className={`${changeClass} mb-2`}>
+          {props.change} {props.pChange}
         </p>
         <img
           src={arrow}

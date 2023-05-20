@@ -8,7 +8,7 @@ a{
 
 .cardStyle {
   width: 13.5rem;
-  height: 14rem;
+  height: 15rem;
   background-color: #fdfffc;
   color: black;
   text-align: center;
@@ -37,19 +37,6 @@ a{
 
 .cardStyle img{
   border-radius: 50%;
-}
-
-span.swiper-pagination-bullet{
-  background: white;
-}
-
-span.swiper-pagination-bullet.swiper-pagination-bullet-active{
-  background: white;
-}
-
-.swiper-pagination{
-  position: relative !important;
-  margin-top: 0.75em;
 }
 
 .modal {
