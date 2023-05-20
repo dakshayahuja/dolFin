@@ -75,7 +75,7 @@ export default function Stocks() {
           pChange2 = storedData.pChange2;
         } else {
           const response2 = await axios.get(
-            `http://dolfin-backend.herokuapp.com/api/stock-price/${symbol}`
+            `https://dolfin-backend.herokuapp.com/api/stock-price/${symbol}`
           );
           lastPrice2 = parseFloat(response2.data.close).toFixed(2);
           var changeSign = "";
