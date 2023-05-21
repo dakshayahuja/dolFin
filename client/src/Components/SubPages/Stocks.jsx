@@ -9,7 +9,7 @@ import { PriceDataContext } from "../PriceDataProvider";
 
 export default function Stocks() {
   const data = useContext(PriceDataContext);
-  const slicedData = data.slice(0, 4);
+  const slicedData = data ? data.slice(0, 4) : [];
   return (
     <>
       <AppBar />

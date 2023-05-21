@@ -1,4 +1,3 @@
-import "bootstrap/dist/css/bootstrap.min.css";
 import MobileView from "./Components/MobileView";
 import Dashboard from "./Components/HomePage/Dashboard";
 import Login from "./Components/Account/Login";
