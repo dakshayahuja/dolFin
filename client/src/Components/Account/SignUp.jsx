@@ -57,7 +57,7 @@ const SignupPage = () => {
       autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
-      pauseOnHover: true,
+      pauseOnHover: false,
       draggable: true,
       progress: undefined,
       theme: "dark",
@@ -69,7 +69,7 @@ const SignupPage = () => {
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
-      pauseOnHover: true,
+      pauseOnHover: false,
       draggable: true,
       progress: undefined,
       theme: "colored",
@@ -108,7 +108,7 @@ const SignupPage = () => {
 
     if (isValid) {
       createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
+        .then(() => {
           notify();
           setTimeout(() => {
             navigate("/login");
