@@ -6,6 +6,7 @@ import CardHolder from "../UI/CardHolder";
 import TableContainer from "../UI/TableContainer";
 import { Row, Col, Container } from "react-bootstrap";
 import NewsContainer from "../UI/NewsContainer";
+
 const initialData = [
   {
     id: 0,
@@ -44,89 +45,115 @@ const initialData = [
     ticker: "DJI",
   },
 ];
+
 export default function Stocks() {
   const [data, setData] = useState(initialData);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
+
+  const fetchStockData = async (ticker, data) => {
+    let newData = [...data];
+    try {
+      let lastPrice, change, pChange;
+      const storedData = JSON.parse(localStorage.getItem({ ticker }));
+      const oneDay = 24 * 60 * 60 * 1000;
+      if (storedData && new Date() - new Date(storedData.timestamp) < oneDay) {
+        lastPrice = storedData.lastPrice;
+        change = storedData.change;
+        pChange = storedData.pChange;
+        changeSign = storedData.changeSign;
+      } else {
         const response = await axios.get(
-          "https://dolfin-backend.herokuapp.com/api/stock-price/nifty"
+          `https://dolfin-backend.herokuapp.com/api/stock-price/${ticker}`
         );
-        const lastPrice = response.data[0].lastPrice;
-        const change = response.data[0].change.toFixed(2);
-        const pChange = response.data[0].pChange.toFixed(2);
+        lastPrice = parseFloat(response.data.close.slice(1)).toFixed(2);
+        change = response.data.change;
         var changeSign = "";
-        if (change && pChange > 0) {
+        if (change.charAt(0) == "+") {
           changeSign = "+";
-        } else if (change && pChange < 0) {
+        } else if (change.charAt(0) == "-") {
           changeSign = "-";
         }
-
-        const symbol = "spx";
-        let lastPrice2, change2, pChange2;
-        const storedData = JSON.parse(localStorage.getItem("SP500Data"));
-        const oneDay = 24 * 60 * 60 * 1000;
-        if (
-          storedData &&
-          new Date() - new Date(storedData.timestamp) < oneDay
-        ) {
-          lastPrice2 = storedData.lastPrice2;
-          change2 = storedData.change2;
-          pChange2 = storedData.pChange2;
-          changeSign2 = storedData.changeSign2;
-        } else {
-          const response2 = await axios.get(
-            `https://dolfin-backend.herokuapp.com/api/stock-price/${symbol}`
-          );
-          lastPrice2 = parseFloat(response2.data.close).toFixed(2);
-          var changeSign2 = "";
-          if (response2.data.change.charAt(0) == "+") {
-            changeSign2 = "+";
-          } else if (response2.data.percent_change.charAt(0) == "-") {
-            changeSign2 = "-";
-          }
-          change2 = parseFloat(response2.data.change.slice(1)).toFixed(2);
-          pChange2 = parseFloat(response2.data.percent_change.slice(1)).toFixed(
-            2
-          );
-
-          localStorage.setItem(
-            "SP500Data",
-            JSON.stringify({
-              timestamp: new Date(),
-              lastPrice2,
-              change2,
-              pChange2,
-              changeSign2,
-            })
-          );
+        change = parseFloat(change.slice(1)).toFixed(2);
+        pChange = parseFloat(response.data.percent_change.slice(1)).toFixed(2);
+        localStorage.setItem(
+          ticker,
+          JSON.stringify({
+            timestamp: new Date(),
+            lastPrice,
+            change,
+            pChange,
+            changeSign,
+          })
+        );
+      }
+      newData = newData.map((item) => {
+        if (item.ticker === ticker) {
+          return {
+            ...item,
+            prices: `$${lastPrice}`,
+            change: `${changeSign + change}`,
+            pChange: `(${changeSign + pChange}%)`,
+          };
         }
-        const updatedData = data.map((item) => {
-          if (item.title === "NIFTY50") {
-            return {
-              ...item,
-              prices: `₹${lastPrice}`,
-              change: `${changeSign + change}`,
-              pChange: `(${changeSign + pChange}%)`,
-            };
-          }
-          if (item.title === "S&P 500") {
-            return {
-              ...item,
-              prices: `$${lastPrice2}`,
-              change: `${changeSign2 + change2}`,
-              pChange: `(${changeSign2 + pChange2}%)`,
-            };
-          }
-          return item;
-        });
-        setData(updatedData);
+        return item;
+      });
+      return newData;
+    } catch (error) {
+      console.error(error);
+      return data;
+    }
+  };
+
+  const fetchData = async (data) => {
+    let newData = [...data];
+    try {
+      const response = await axios.get(
+        "https://dolfin-backend.herokuapp.com/api/stock-price/nifty"
+      );
+      const lastPrice = response.data[0].lastPrice;
+      const change = response.data[0].change.toFixed(2);
+      const pChange = response.data[0].pChange.toFixed(2);
+      var changeSign = "";
+      if (change > 0) {
+        changeSign = "+";
+      } else if (change < 0) {
+        changeSign = "-";
+      }
+
+      newData = newData.map((item) => {
+        if (item.title === "NIFTY50") {
+          return {
+            ...item,
+            prices: `₹${lastPrice}`,
+            change: `${changeSign + change}`,
+            pChange: `(${changeSign + pChange}%)`,
+          };
+        }
+        return item;
+      });
+      return newData;
+    } catch (error) {
+      console.error(error);
+      return data;
+    }
+  };
+
+  useEffect(() => {
+    const fetchDataAndSetState = async () => {
+      let newData = [...data];
+      try {
+        newData = await fetchData(newData);
+        newData = await fetchStockData("SPX", newData);
+        newData = await fetchStockData("NDX", newData);
+        newData = await fetchStockData("DJI", newData);
+        setData(newData);
       } catch (error) {
         console.error(error);
       }
     };
-    fetchData();
+
+    fetchDataAndSetState();
   }, []);
+
   return (
     <>
       <AppBar />
