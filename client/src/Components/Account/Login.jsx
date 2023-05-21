@@ -14,6 +14,8 @@ import { useNavigate } from "react-router-dom";
 import "../../Styles/login-signup.css";
 import { auth } from "./Firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const LoginNavbar = () => {
   return (
@@ -42,8 +44,30 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
-  const [loginError, setLoginError] = useState(null);
   const navigate = useNavigate();
+
+  const successNoti = () =>
+    toast.success("Login Successful!", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+    const errorNoti = (msg) =>
+      toast.error(msg, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -51,14 +75,19 @@ const LoginPage = () => {
     let isValid = true;
     let errors = {};
 
-    if (email.trim() === "") {
+    if (email.trim() === "" && password.trim() === "") {
       isValid = false;
-      errors.email = "Email is required";
-    }
+      errorNoti("Email and Password are required");
+    } else {
+      if (email.trim() === "") {
+        isValid = false;
+        errors.email = "Email is required";
+      }
 
-    if (password.trim() === "") {
-      isValid = false;
-      errors.password = "Password is required";
+      if (password.trim() === "") {
+        isValid = false;
+        errors.password = "Password is required";
+      }
     }
 
     setErrors(errors);
@@ -66,13 +95,18 @@ const LoginPage = () => {
     if (isValid) {
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          console.log(userCredential);
-          navigate("/");
+          successNoti();
+          setTimeout(() => {
+            navigate("/");
+          }, 2300);
         })
         .catch((error) => {
-          console.log(error);
-          setLoginError("Incorrect email or password");
+          errorNoti("Incorrect email or password");
         });
+    } else {
+      for (const error in errors) {
+        errorNoti(errors[error]);
+      }
     }
   };
 
@@ -91,7 +125,6 @@ const LoginPage = () => {
           <Col className="login-form-col" style={{ marginTop: "6em" }}>
             <div className="login-form-container">
               <h2 className="text-center">Sign In</h2>
-              {loginError && <div className="text-danger text-center">{loginError}</div>}
               <Form onSubmit={handleSubmit} style={{ marginTop: "3em" }}>
                 <Form.Group className="mb-3">
                   <Form.Label>Email</Form.Label>
@@ -101,9 +134,6 @@ const LoginPage = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
-                  {errors.email && (
-                    <div className="text-danger text-center">{errors.email}</div>
-                  )}
                 </Form.Group>
 
                 <Form.Group className="mb-3">
@@ -114,9 +144,6 @@ const LoginPage = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
-                  {errors.password && (
-                    <div className="text-danger text-center">{errors.password}</div>
-                  )}
                 </Form.Group>
                 <Form.Group className="text-center">
                   <Button className="signup_login" type="submit">
@@ -134,6 +161,18 @@ const LoginPage = () => {
           </Col>
         </Col>
       </Row>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </Container>
   );
 };

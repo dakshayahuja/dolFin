@@ -15,6 +15,8 @@ import { useNavigate } from "react-router-dom";
 import "../../Styles/login-signup.css";
 import { auth } from "./Firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignupNavbar = () => (
   <Navbar className="login-navbar">
@@ -49,6 +51,30 @@ const SignupPage = () => {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
+  const notify = () =>
+    toast.success("Account created successfully. Please login now!", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+
+  const errorNoti = (msg) =>
+    toast.error(msg, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -65,7 +91,15 @@ const SignupPage = () => {
       newErrors.email = "Email is required";
     }
 
-    if (password !== confirmPassword) {
+    if (password.trim() === "") {
+      isValid = false;
+      newErrors.password = "Password is required";
+    }
+
+    if (confirmPassword.trim() === "") {
+      isValid = false;
+      newErrors.confirmPassword = "Confirmation password is required";
+    } else if (password !== confirmPassword) {
       isValid = false;
       newErrors.confirmPassword = "Passwords do not match";
     }
@@ -75,12 +109,23 @@ const SignupPage = () => {
     if (isValid) {
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          alert("Account has been created successfully. You can now login.");
-          navigate("/login");
+          notify();
+          setTimeout(() => {
+            navigate("/login");
+          }, 3100);
         })
         .catch((error) => {
           setErrors((prevState) => ({ ...prevState, firebase: error.message }));
+          errorNoti(error.message);
         });
+    } else {
+      if (Object.keys(newErrors).length > 1) {
+        errorNoti("Please fill all the required fields.");
+      } else {
+        for (const error in newErrors) {
+          errorNoti(newErrors[error]);
+        }
+      }
     }
   };
 
@@ -108,9 +153,6 @@ const SignupPage = () => {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                   />
-                  {errors.username && (
-                    <div className="text-danger">{errors.username}</div>
-                  )}
                 </Form.Group>
                 <Form.Group className="mb-3">
                   <Form.Label>Email</Form.Label>
@@ -120,9 +162,6 @@ const SignupPage = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
-                  {errors.email && (
-                    <div className="text-danger">{errors.email}</div>
-                  )}
                 </Form.Group>
 
                 <Form.Group className="mb-3">
@@ -133,9 +172,6 @@ const SignupPage = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
-                  {errors.password && (
-                    <div className="text-danger">{errors.password}</div>
-                  )}
                 </Form.Group>
                 <Form.Group className="mb-3">
                   <Form.Label>Confirm Password</Form.Label>
@@ -145,9 +181,6 @@ const SignupPage = () => {
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                   />
-                  {errors.confirmPassword && (
-                    <div className="text-danger">{errors.confirmPassword}</div>
-                  )}
                 </Form.Group>
 
                 <Form.Group className="text-center">
@@ -156,9 +189,6 @@ const SignupPage = () => {
                   </Button>
                 </Form.Group>
               </Form>
-              {errors.firebase && (
-                <div className="text-danger">{errors.firebase}</div>
-              )}
               <p className="text-center" style={{ marginTop: "5em" }}>
                 Already have an account?{" "}
                 <Link to="/login" className="signup-link">
@@ -169,6 +199,18 @@ const SignupPage = () => {
           </Col>
         </Col>
       </Row>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </Container>
   );
 };
