@@ -10,7 +10,7 @@ export const PriceDataProvider = ({ children }) => {
       title: "NIFTY50",
       prices: "",
       change: "",
-      img: "https://cdn.indiawealth.in/cdn-cgi/image/quality=90,format=auto,metadata=copyright,width=100/https://cdn.indiawealth.in/public/images/Niffty50.png",
+      img: "https://res.cloudinary.com/dmmhdkrul/image/upload/v1684696521/nse_pp0lsk.png",
       widget_ticker: "NIFTY50",
       ticker: "NIFTY50",
     },
