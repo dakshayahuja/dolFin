@@ -12,6 +12,8 @@ import loginImg from "../../Assets/login.png";
 import logo from "../../Assets/favicon.png";
 import { useNavigate } from "react-router-dom";
 import "../../Styles/login-signup.css";
+import {auth , app} from "./Firebase";
+import {signInWithEmailAndPassword} from "firebase/auth";
 
 const LoginNavbar = () => {
   return (
@@ -37,7 +39,7 @@ const LoginNavbar = () => {
 };
 
 const LoginPage = () => {
-  const [username, setUsername] = useState("");
+  const [email, setemail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
@@ -48,9 +50,9 @@ const LoginPage = () => {
     let isValid = true;
     let errors = {};
 
-    if (username === "") {
+    if (email === "") {
       isValid = false;
-      errors.username = "Username is required";
+      errors.email = "email is required";
     }
 
     if (password === "") {
@@ -60,10 +62,15 @@ const LoginPage = () => {
 
     setErrors(errors);
 
-    if (isValid) {
-      alert("User has signed in successfully");
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      console.log(userCredential);
       navigate("/");
-    }
+    })
+    .catch((error) => {
+      console.log(error);
+      alert("incorrect credentials");
+    });
   };
 
   return (
@@ -83,15 +90,15 @@ const LoginPage = () => {
             <h2 className="text-center">Sign In</h2>
             <Form onSubmit={handleSubmit} style={{marginTop: "3em"}}>
               <Form.Group className="mb-3">
-                <Form.Label>Username</Form.Label>
+                <Form.Label>Email</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Enter username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  placeholder="Enter email"
+                  value={email}
+                  onChange={(e) => setemail(e.target.value)}
                 />
-                {errors.username && (
-                  <div className="text-danger">{errors.username}</div>
+                {errors.email && (
+                  <div className="text-danger">{errors.email}</div>
                 )}
               </Form.Group>
 

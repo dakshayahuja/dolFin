@@ -12,7 +12,8 @@ import loginImg from "../../Assets/login.png";
 import logo from "../../Assets/favicon.png";
 import { useNavigate } from "react-router-dom";
 import "../../Styles/login-signup.css";
-
+import {auth , app} from "./Firebase";
+import {createUserWithEmailAndPassword} from "firebase/auth";
 const LoginNavbar = () => {
   return (
     <Navbar className="login-navbar">
@@ -72,10 +73,19 @@ const LoginPage = () => {
 
     setErrors(errors);
 
-    if (isValid) {
+    // if (isValid) {
+    //   alert("Account has been created successfully. You can now login.");
+    //   navigate("/login");
+    // }
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      console.log(userCredential);
       alert("Account has been created successfully. You can now login.");
       navigate("/login");
-    }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   };
 
   return (
