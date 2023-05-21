@@ -1,3 +1,4 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import MobileView from "./Components/MobileView";
 import Dashboard from "./Components/HomePage/Dashboard";
 import Login from "./Components/Account/Login";
@@ -7,7 +8,6 @@ import Signup from "./Components/Account/SignUp";
 import MutualFunds from "./Components/SubPages/MutualFunds";
 import { Routes, Route } from "react-router-dom";
 import Landing from "./Components/HomePage/Landing";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { PriceDataProvider } from "./Components/PriceDataProvider";
 
 const Mobile = () => {
