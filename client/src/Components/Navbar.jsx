@@ -1,35 +1,39 @@
 import "../Styles/navbar.css";
 import logo from "../Assets/favicon.png";
-import { Link,  Outlet } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, Outlet } from "react-router-dom";
 import { Nav, Navbar, Button, Container } from "react-bootstrap";
+import { PriceDataContext } from "./PriceDataProvider";
 
 const Topbar = () => {
+  const data = useContext(PriceDataContext);
+  const indices = [0, 1, 4, 5];
+
   return (
     <div className="topbar">
       <ul className="topbar-items">
-        <li>
-          NIFTY 50 <span className="topbar-sp-1">₹17599.15</span>{" "}
-          <span className="topbar-sp-2"> +42 (+0.10%)</span>
-        </li>
-        <li>
-          SENSEX <span className="topbar-sp-1">₹59832.97</span>{" "}
-          <span className="topbar-sp-2"> +143.66 (+0.24%)</span>
-        </li>
-        <li>
-          BTC/USD <span className="topbar-sp-1">$28135.32</span>{" "}
-          <span className="topbar-sp-2"> +390.54 (+1.36%)</span>
-        </li>
-        <li>
-          ETH/USD <span className="topbar-sp-1">$1880</span>{" "}
-          <span className="topbar-sp-2" style={{ color: "red" }}>
-            {" "}
-            -24.45 (-1.3%)
-          </span>
-        </li>
+        {indices.map((index) => {
+          const item = data[index];
+          return (
+            <li key={index}>
+              {item.title} <span className="topbar-sp-1">{item.prices}</span>{" "}
+              <span
+                className="topbar-sp-2"
+                style={{
+                  color: parseFloat(item.change) >= 0 ? "green" : "red",
+                }}
+              >
+                {item.change} {item.pChange}
+              </span>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
 };
+
+
 
 function AppBar() {
   return (

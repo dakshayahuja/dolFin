@@ -8,6 +8,7 @@ import Signup from "./Components/Account/SignUp";
 import MutualFunds from "./Components/SubPages/MutualFunds";
 import { Routes, Route } from "react-router-dom";
 import Landing from "./Components/HomePage/Landing";
+import { PriceDataProvider } from "./Components/PriceDataProvider";
 
 const Mobile = () => {
   return <MobileView />;
@@ -29,15 +30,17 @@ const App = () => {
   pageDecide();
   return (
     <>
-      <Routes>
-        <Route path="/" element={page} />
-        <Route path="/stocks" element={<Stocks />} />
-        <Route path="/mutualfund" element={<MutualFunds />} />
-        <Route path="/crypto" element={<Crypto />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="*" element={<h1>404 Not Found</h1>} />
-      </Routes>
+      <PriceDataProvider>
+        <Routes>
+          <Route path="/" element={page} />
+          <Route path="/stocks" element={<Stocks />} />
+          <Route path="/mutualfund" element={<MutualFunds />} />
+          <Route path="/crypto" element={<Crypto />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="*" element={<h1>404 Not Found</h1>} />
+        </Routes>
+      </PriceDataProvider>
     </>
   );
 };
