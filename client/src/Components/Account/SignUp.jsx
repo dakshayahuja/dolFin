@@ -8,40 +8,44 @@ import {
   Navbar,
   Nav,
 } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import loginImg from "../../Assets/login.png";
 import logo from "../../Assets/favicon.png";
 import { useNavigate } from "react-router-dom";
 import "../../Styles/login-signup.css";
-import {auth , app} from "./Firebase";
-import {createUserWithEmailAndPassword} from "firebase/auth";
-const LoginNavbar = () => {
-  return (
-    <Navbar className="login-navbar">
-      <Container fluid>
-        <Navbar.Brand>
-          <img
-            src={logo}
-            alt="Logo"
-            width="30"
-            height="30"
-            className="d-inline-block align-top"
-          />{" "}
-          dolFin
-        </Navbar.Brand>
-        <Nav className="ms-auto">
-          <Nav.Link href="/">Home</Nav.Link>
-          <Nav.Link href="/signup">Sign In</Nav.Link>
-        </Nav>
-      </Container>
-    </Navbar>
-  );
-};
+import { auth } from "./Firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
-const LoginPage = () => {
+const SignupNavbar = () => (
+  <Navbar className="login-navbar">
+    <Container fluid>
+      <Navbar.Brand>
+        <img
+          src={logo}
+          alt="Logo"
+          width="30"
+          height="30"
+          className="d-inline-block align-top"
+        />{" "}
+        dolFin
+      </Navbar.Brand>
+      <Nav className="ms-auto">
+        <Nav.Link as={Link} to="/">
+          Home
+        </Nav.Link>
+        <Nav.Link as={Link} to="/login">
+          Sign In
+        </Nav.Link>
+      </Nav>
+    </Container>
+  </Navbar>
+);
+
+const SignupPage = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setconfirmPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
@@ -49,43 +53,35 @@ const LoginPage = () => {
     event.preventDefault();
 
     let isValid = true;
-    let errors = {};
+    const newErrors = {};
 
-    if (username === "") {
+    if (username.trim() === "") {
       isValid = false;
-      errors.username = "Username is required";
+      newErrors.username = "Username is required";
     }
 
-    if (password === "" || confirmPassword === "") {
+    if (email.trim() === "") {
       isValid = false;
-      errors.password = "Password is required";
+      newErrors.email = "Email is required";
     }
 
     if (password !== confirmPassword) {
       isValid = false;
-      errors.confirmPassword = "Passwords do not match";
+      newErrors.confirmPassword = "Passwords do not match";
     }
 
-    if (email === "") {
-      isValid = false;
-      errors.email = "Email is required";
+    setErrors(newErrors);
+
+    if (isValid) {
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          alert("Account has been created successfully. You can now login.");
+          navigate("/login");
+        })
+        .catch((error) => {
+          setErrors((prevState) => ({ ...prevState, firebase: error.message }));
+        });
     }
-
-    setErrors(errors);
-
-    // if (isValid) {
-    //   alert("Account has been created successfully. You can now login.");
-    //   navigate("/login");
-    // }
-    createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      console.log(userCredential);
-      alert("Account has been created successfully. You can now login.");
-      navigate("/login");
-    })
-    .catch((error) => {
-      console.log(error);
-    });
   };
 
   return (
@@ -97,7 +93,7 @@ const LoginPage = () => {
         <Col md={6} style={{ backgroundColor: "#fff", minHeight: "100vh" }}>
           <Row>
             <Col md={12}>
-              <LoginNavbar />
+              <SignupNavbar />
             </Col>
           </Row>
           <Col className="login-form-col" style={{ marginTop: "1em" }}>
@@ -147,26 +143,27 @@ const LoginPage = () => {
                     type="password"
                     placeholder="Enter password again"
                     value={confirmPassword}
-                    onChange={(e) => setconfirmPassword(e.target.value)}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
                   />
                   {errors.confirmPassword && (
                     <div className="text-danger">{errors.confirmPassword}</div>
                   )}
-                  {errors.password && (
-                    <div className="text-danger">{errors.password}</div>
-                  )}
                 </Form.Group>
+
                 <Form.Group className="text-center">
                   <Button className="signup_login" type="submit">
                     Sign Up
                   </Button>
                 </Form.Group>
               </Form>
+              {errors.firebase && (
+                <div className="text-danger">{errors.firebase}</div>
+              )}
               <p className="text-center" style={{ marginTop: "5em" }}>
                 Already have an account?{" "}
-                <a href="/login" className="signup-link">
+                <Link to="/login" className="signup-link">
                   Login
-                </a>
+                </Link>
               </p>
             </div>
           </Col>
@@ -176,4 +173,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default SignupPage;

@@ -12,12 +12,12 @@ import loginImg from "../../Assets/login.png";
 import logo from "../../Assets/favicon.png";
 import { useNavigate } from "react-router-dom";
 import "../../Styles/login-signup.css";
-import {auth , app} from "./Firebase";
-import {signInWithEmailAndPassword} from "firebase/auth";
+import { auth } from "./Firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const LoginNavbar = () => {
   return (
-    <Navbar className="login-navbar" >
+    <Navbar className="login-navbar">
       <Container fluid>
         <Navbar.Brand>
           <img
@@ -29,19 +29,20 @@ const LoginNavbar = () => {
           />{" "}
           dolFin
         </Navbar.Brand>
-          <Nav className="ms-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/signup">Sign Up</Nav.Link>
-          </Nav>
+        <Nav className="ms-auto">
+          <Nav.Link href="/">Home</Nav.Link>
+          <Nav.Link href="/signup">Sign Up</Nav.Link>
+        </Nav>
       </Container>
     </Navbar>
   );
 };
 
 const LoginPage = () => {
-  const [email, setemail] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const [loginError, setLoginError] = useState(null);
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
@@ -50,80 +51,86 @@ const LoginPage = () => {
     let isValid = true;
     let errors = {};
 
-    if (email === "") {
+    if (email.trim() === "") {
       isValid = false;
-      errors.email = "email is required";
+      errors.email = "Email is required";
     }
 
-    if (password === "") {
+    if (password.trim() === "") {
       isValid = false;
       errors.password = "Password is required";
     }
 
     setErrors(errors);
 
-    signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      console.log(userCredential);
-      navigate("/");
-    })
-    .catch((error) => {
-      console.log(error);
-      alert("incorrect credentials");
-    });
+    if (isValid) {
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          console.log(userCredential);
+          navigate("/");
+        })
+        .catch((error) => {
+          console.log(error);
+          setLoginError("Incorrect email or password");
+        });
+    }
   };
 
   return (
     <Container fluid>
       <Row className="login-page align-items-start">
-        <Col md={6}  className="login-img-col">
+        <Col md={6} className="login-img-col">
           <img className="login-image" src={loginImg} alt="Login" />
         </Col>
-        <Col md={6} style={{backgroundColor: "#fff", minHeight: "100vh"}}>
+        <Col md={6} style={{ backgroundColor: "#fff", minHeight: "100vh" }}>
           <Row>
             <Col md={12}>
               <LoginNavbar />
             </Col>
           </Row>
-          <Col className="login-form-col" style={{ marginTop: "6em"}}>
-          <div className="login-form-container">
-            <h2 className="text-center">Sign In</h2>
-            <Form onSubmit={handleSubmit} style={{marginTop: "3em"}}>
-              <Form.Group className="mb-3">
-                <Form.Label>Email</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter email"
-                  value={email}
-                  onChange={(e) => setemail(e.target.value)}
-                />
-                {errors.email && (
-                  <div className="text-danger">{errors.email}</div>
-                )}
-              </Form.Group>
+          <Col className="login-form-col" style={{ marginTop: "6em" }}>
+            <div className="login-form-container">
+              <h2 className="text-center">Sign In</h2>
+              {loginError && <div className="text-danger text-center">{loginError}</div>}
+              <Form onSubmit={handleSubmit} style={{ marginTop: "3em" }}>
+                <Form.Group className="mb-3">
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control
+                    type="email"
+                    placeholder="Enter email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  {errors.email && (
+                    <div className="text-danger text-center">{errors.email}</div>
+                  )}
+                </Form.Group>
 
-              <Form.Group className="mb-3">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Enter password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                {errors.password && (
-                  <div className="text-danger">{errors.password}</div>
-                )}
-              </Form.Group>
-              <Form.Group className="text-center">
-              <Button className="signup_login" type="submit">
-                Sign In
-              </Button>
-              </Form.Group>
-            </Form>
-            <p className="text-center" style={{marginTop:"5em"}}>
-              Don't have an account? <a href="/signup" className="signup-link">Sign Up</a>
-            </p>
-          </div>
+                <Form.Group className="mb-3">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control
+                    type="password"
+                    placeholder="Enter password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                  {errors.password && (
+                    <div className="text-danger text-center">{errors.password}</div>
+                  )}
+                </Form.Group>
+                <Form.Group className="text-center">
+                  <Button className="signup_login" type="submit">
+                    Sign In
+                  </Button>
+                </Form.Group>
+              </Form>
+              <p className="text-center" style={{ marginTop: "5em" }}>
+                Don't have an account?{" "}
+                <a href="/signup" className="signup-link">
+                  Sign Up
+                </a>
+              </p>
+            </div>
           </Col>
         </Col>
       </Row>
