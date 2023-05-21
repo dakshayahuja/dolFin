@@ -53,7 +53,7 @@ export default function Stocks() {
     let newData = [...data];
     try {
       let lastPrice, change, pChange;
-      const storedData = JSON.parse(localStorage.getItem({ ticker }));
+      const storedData = JSON.parse(localStorage.getItem(ticker));
       const oneDay = 24 * 60 * 60 * 1000;
       if (storedData && new Date() - new Date(storedData.timestamp) < oneDay) {
         lastPrice = storedData.lastPrice;
@@ -64,7 +64,7 @@ export default function Stocks() {
         const response = await axios.get(
           `https://dolfin-backend.herokuapp.com/api/stock-price/${ticker}`
         );
-        lastPrice = parseFloat(response.data.close.slice(1)).toFixed(2);
+        lastPrice = parseFloat(response.data.close).toFixed(2);
         change = response.data.change;
         var changeSign = "";
         if (change.charAt(0) == "+") {
