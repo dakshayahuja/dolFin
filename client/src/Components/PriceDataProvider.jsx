@@ -46,7 +46,7 @@ export const PriceDataProvider = ({ children }) => {
       title: "BTC/USD",
       prices: "",
       change: "",
-      img: "https://s3-symbol-logo.tradingview.com/indices/dow-30--big.svg",
+      img: "https://static.coinstats.app/coins/1650455588819.png",
       widget_ticker: "DJI",
       ticker: "DJI",
     },
@@ -55,7 +55,7 @@ export const PriceDataProvider = ({ children }) => {
       title: "ETH/USD",
       prices: "",
       change: "",
-      img: "https://s3-symbol-logo.tradingview.com/indices/dow-30--big.svg",
+      img: "https://static.coinstats.app/coins/1650455629727.png",
       widget_ticker: "DJI",
       ticker: "DJI",
     },
@@ -86,8 +86,8 @@ export const PriceDataProvider = ({ children }) => {
         } else if (change.charAt(0) == "-") {
           changeSign = "-";
         }
-        change = parseFloat(change.slice(1)).toFixed(2);
-        pChange = parseFloat(response.data.percent_change.slice(1)).toFixed(2);
+        change = parseFloat(change).toFixed(2);
+        pChange = parseFloat(response.data.percent_change).toFixed(2);
         localStorage.setItem(
           ticker,
           JSON.stringify({
@@ -104,8 +104,8 @@ export const PriceDataProvider = ({ children }) => {
           return {
             ...item,
             prices: `$${lastPrice}`,
-            change: `${changeSign + change}`,
-            pChange: `(${changeSign + pChange}%)`,
+            change: `${change}`,
+            pChange: `(${pChange}%)`,
           };
         }
         return item;
@@ -124,13 +124,11 @@ export const PriceDataProvider = ({ children }) => {
         "https://dolfin-backend.herokuapp.com/api/stock-price/nifty"
       );
       const lastPrice = response.data[0].lastPrice;
-      const change = response.data[0].change.toFixed(2);
-      const pChange = response.data[0].pChange.toFixed(2);
+      var change = response.data[0].change.toFixed(2);
+      var pChange = response.data[0].pChange.toFixed(2);
       var changeSign = "";
       if (change > 0) {
         changeSign = "+";
-      } else if (change < 0) {
-        changeSign = "-";
       }
 
       newData = newData.map((item) => {
