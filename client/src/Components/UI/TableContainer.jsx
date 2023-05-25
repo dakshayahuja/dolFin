@@ -14,7 +14,7 @@ function TableContainer() {
 
       if (storageData && lastFetchTime && Date.now() - lastFetchTime < oneDay) {
         let data = JSON.parse(storageData);
-        data.shift();
+        data = data.filter((item) => item.symbol !== "NIFTY 50");
         data.sort((a, b) => a.symbol.localeCompare(b.symbol));
         setData(data);
       } else {
@@ -52,22 +52,22 @@ function TableContainer() {
       <h3 style={{ fontFamily: "Montserrat", marginBottom: "1em" }}>
         Nifty 50 Stocks
       </h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Symbol</th>
-            <th>Price</th>
-            <th>Change</th>
-            <th>Change %</th>
-            <th>Traded Volume</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.slice(1).map((item, index) => (
-            <TableItem key={index} item={item} />
-          ))}
-        </tbody>
-      </table>
+        <table>
+          <thead>
+            <tr>
+              <th>Symbol</th>
+              <th>Price</th>
+              <th>Change</th>
+              <th>Change %</th>
+              <th>Traded Volume</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.slice(1).map((item, index) => (
+              <TableItem key={index} item={item} />
+            ))}
+          </tbody>
+        </table>
     </>
   );
 }

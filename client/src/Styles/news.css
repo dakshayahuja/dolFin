@@ -2,6 +2,7 @@
   font-family: Poppins;
   max-height: 2055px;
   overflow-y: scroll;
+  scrollbar-color: #fe643df4 #161a1d;
 }
 
 #news-container::-webkit-scrollbar {
