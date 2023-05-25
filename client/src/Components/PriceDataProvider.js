@@ -73,19 +73,12 @@ export const PriceDataProvider = ({ children }) => {
         lastPrice = storedData.lastPrice;
         change = storedData.change;
         pChange = storedData.pChange;
-        changeSign = storedData.changeSign;
       } else {
         const response = await axios.get(
           `https://dolfin-backend.herokuapp.com/api/stock-price/${ticker}`
         );
         lastPrice = parseFloat(response.data.close).toFixed(2);
         change = response.data.change;
-        var changeSign = "";
-        if (change.charAt(0) == "+") {
-          changeSign = "+";
-        } else if (change.charAt(0) == "-") {
-          changeSign = "-";
-        }
         change = parseFloat(change).toFixed(2);
         pChange = parseFloat(response.data.percent_change).toFixed(2);
         localStorage.setItem(
@@ -95,7 +88,6 @@ export const PriceDataProvider = ({ children }) => {
             lastPrice,
             change,
             pChange,
-            changeSign,
           })
         );
       }
@@ -126,18 +118,14 @@ export const PriceDataProvider = ({ children }) => {
       const lastPrice = response.data[0].lastPrice;
       var change = response.data[0].change.toFixed(2);
       var pChange = response.data[0].pChange.toFixed(2);
-      var changeSign = "";
-      if (change > 0) {
-        changeSign = "+";
-      }
 
       newData = newData.map((item) => {
         if (item.title === "NIFTY50") {
           return {
             ...item,
             prices: `₹${lastPrice}`,
-            change: `${changeSign + change}`,
-            pChange: `(${changeSign + pChange}%)`,
+            change: `${change}`,
+            pChange: `(${pChange}%)`,
           };
         }
         return item;
