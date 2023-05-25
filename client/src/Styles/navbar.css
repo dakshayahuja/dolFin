@@ -78,7 +78,7 @@ a:hover {
   border: none;
   background-color: #1c2124;
   min-width: fit-content;
-  padding: 0.2em 2em;
+  padding: 0.2em 1.5em;
 }
 
 .dropdown-menu a{

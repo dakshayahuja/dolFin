@@ -6,6 +6,8 @@ import { PriceDataContext } from "./PriceDataProvider";
 import logo from "../Assets/favicon.png";
 import "../Styles/navbar.css";
 import { UserContext } from "./UserProvider";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Topbar = () => {
   const data = useContext(PriceDataContext);
@@ -52,7 +54,7 @@ const RenderNavbar = ({ user, buttonText, handleSignOut }) => (
     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
     <Navbar.Collapse id="responsive-navbar-nav">
       <Nav className="mx-auto gap-5">
-        <Nav>
+        <Nav className="ms-lg-4">
           <Link to="/stocks">Stocks</Link>
         </Nav>
         <Nav>
@@ -62,7 +64,7 @@ const RenderNavbar = ({ user, buttonText, handleSignOut }) => (
           <Link to="/crypto">Cryptocurrency</Link>
         </Nav>
       </Nav>
-      <Nav>
+      <Nav className="me-2">
         {user ? (
           <Dropdown>
             <Dropdown.Toggle id="dropdown-basic">{buttonText}</Dropdown.Toggle>
@@ -84,12 +86,23 @@ function AppBar() {
   const { user, setUser } = useContext(UserContext);
   const [buttonText, setButtonText] = useState("Login");
   const auth = getAuth();
-  const navigate = useNavigate();
+
+  const SignoutNoti = () =>
+    toast.warning("You have been signed out!", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
 
   const handleSignOut = async () => {
     try {
+      SignoutNoti();
       await signOut(auth);
-      // navigate("/login");
     } catch (error) {
       console.error("Error signing out: ", error);
     }
@@ -122,6 +135,18 @@ function AppBar() {
         handleSignOut={handleSignOut}
       />
       <Outlet />
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </>
   );
 }
