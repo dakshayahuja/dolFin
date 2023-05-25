@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   Container,
   Row,
@@ -13,10 +13,11 @@ import loginImg from "../../Assets/login.png";
 import logo from "../../Assets/favicon.png";
 import { useNavigate } from "react-router-dom";
 import "../../Styles/login-signup.css";
-import { auth } from "./Firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../Firebase";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { UserContext } from "../UserProvider";
 
 const SignupNavbar = () => (
   <Navbar className="login-navbar">
@@ -44,6 +45,7 @@ const SignupNavbar = () => (
 );
 
 const SignupPage = () => {
+  const { user, setUser } = useContext(UserContext);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -108,7 +110,15 @@ const SignupPage = () => {
 
     if (isValid) {
       createUserWithEmailAndPassword(auth, email, password)
-        .then(() => {
+        .then((userCredential) => {
+          // The promise returned by updateProfile() resolves when the user data has been updated
+          return updateProfile(userCredential.user, {
+            displayName: username,
+          }).then(() => userCredential.user); // Return the updated user
+        })
+        .then((user) => {
+          // At this point, the user's displayName has been updated
+          setUser(user); // Update your app state with the updated user
           notify();
           setTimeout(() => {
             navigate("/login");
@@ -118,14 +128,6 @@ const SignupPage = () => {
           setErrors((prevState) => ({ ...prevState, firebase: error.message }));
           errorNoti(error.message);
         });
-    } else {
-      if (Object.keys(newErrors).length > 1) {
-        errorNoti("Please fill all the required fields.");
-      } else {
-        for (const error in newErrors) {
-          errorNoti(newErrors[error]);
-        }
-      }
     }
   };
 

@@ -1,4 +1,4 @@
-import AppBar from "../Navbar";
+import AppBar from "../AppBar";
 import Footer from "../Footer";
 import React from "react";
 

@@ -3,13 +3,13 @@ import Stock from "../../Assets/stock.png";
 import Crypto from "../../Assets/crypto.png";
 import MF from "../../Assets/MF.png";
 import Hero from "../UI/Hero";
-import AppBar from "../Navbar";
+import AppBar from "../AppBar";
 import Footer from "../Footer";
 
 const Landing = () => {
   return (
     <>
-    <AppBar />
+      <AppBar />
       <Hero />
       <div>
         <Header

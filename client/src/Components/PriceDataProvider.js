@@ -47,8 +47,8 @@ export const PriceDataProvider = ({ children }) => {
       prices: "",
       change: "",
       img: "https://static.coinstats.app/coins/1650455588819.png",
-      widget_ticker: "DJI",
-      ticker: "DJI",
+      widget_ticker: "BTC",
+      ticker: "BTC",
     },
     {
       id: 5,
@@ -56,8 +56,8 @@ export const PriceDataProvider = ({ children }) => {
       prices: "",
       change: "",
       img: "https://static.coinstats.app/coins/1650455629727.png",
-      widget_ticker: "DJI",
-      ticker: "DJI",
+      widget_ticker: "ETH",
+      ticker: "ETH",
     },
   ];
 
@@ -149,6 +149,39 @@ export const PriceDataProvider = ({ children }) => {
     }
   };
 
+  const fetchCryptoData = async () => {
+    try {
+      const response = await axios.get(
+        "https://dolfin-backend.herokuapp.com/api/crypto"
+      );
+      const btcData = response.data.coins.find(
+        (coin) => coin.name === "Bitcoin"
+      );
+      const ethData = response.data.coins.find(
+        (coin) => coin.name === "Ethereum"
+      );
+
+      if (btcData && ethData) {
+        setData((prevData) => {
+          let newData = [...prevData];
+          newData[4] = {
+            ...newData[4],
+            prices: `$${btcData.price.toFixed(2)}`,
+            change: `$${btcData.priceChange1d.toFixed(2)}`,
+          };
+          newData[5] = {
+            ...newData[5],
+            prices: `$${ethData.price.toFixed(2)}`,
+            change: `$${ethData.priceChange1d.toFixed(2)}`,
+          };
+          return newData;
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     const fetchDataAndSetState = async () => {
       let newData = [...data];
@@ -158,6 +191,7 @@ export const PriceDataProvider = ({ children }) => {
         newData = await fetchStockData("NDX", newData);
         newData = await fetchStockData("DJI", newData);
         setData(newData);
+        await fetchCryptoData();
       } catch (error) {
         console.error(error);
       }
@@ -165,6 +199,8 @@ export const PriceDataProvider = ({ children }) => {
 
     fetchDataAndSetState();
   }, []);
+
+
 
   return (
     <PriceDataContext.Provider value={data}>

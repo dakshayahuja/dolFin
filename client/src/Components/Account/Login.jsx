@@ -12,7 +12,7 @@ import loginImg from "../../Assets/login.png";
 import logo from "../../Assets/favicon.png";
 import { useNavigate } from "react-router-dom";
 import "../../Styles/login-signup.css";
-import { auth } from "./Firebase";
+import { auth } from "../Firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -57,17 +57,17 @@ const LoginPage = () => {
       progress: undefined,
       theme: "colored",
     });
-    const errorNoti = (msg) =>
-      toast.error(msg, {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+  const errorNoti = (msg) =>
+    toast.error(msg, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
 
   const handleSubmit = (event) => {
     event.preventDefault();
