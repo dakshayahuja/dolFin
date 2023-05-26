@@ -7,7 +7,7 @@ export default function NewsContainer() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://newsapi.org/v2/top-headlines?country=in&category=business&pageSize=100&apiKey=08fcd1436bdc41e8954e90b07e1d06e4"
+          "https://dolfin-backend.herokuapp.com/api/news"
         );
         setArticles(response.data.articles);
       } catch (error) {
