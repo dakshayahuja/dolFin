@@ -1,12 +1,25 @@
-h4{
+@media (max-width: 1024px) {
+  .card-container {
+    justify-content: space-around;
+    overflow-x: auto;
+  }
+}
+
+h4 {
   font-family: Montserrat;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
-.cardStyle {
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card-item {
+  flex: 0 0 auto;
   width: 13.5rem;
   height: 15rem;
   background-color: #fdfffc;
@@ -14,28 +27,28 @@ a{
   text-align: center;
   padding: 2em 0;
   border-radius: 1em;
-  margin: 0.1em;
+  /* margin: 0.1em; */
+  margin: 1em 1em 1em 0em;
 }
 
-.cardStyle:hover {
+.card-item:hover {
   outline: 0.15em solid #edf2f4;
   box-shadow: 0 0 0.35em #edf2f4;
   background-color: #212529;
   color: white;
 }
 
-
-.cardStyle:hover img.arrowStyle {
+.card-item:hover img.arrowStyle {
   background-color: white;
 }
 
-.arrowStyle{
+.arrowStyle {
   border-radius: 50%;
   padding: 0.4em;
   border: 0.075em solid transparent;
 }
 
-.cardStyle img{
+.card-item img {
   border-radius: 50%;
 }
 
@@ -82,10 +95,14 @@ a{
   border-bottom: 1px solid #eee;
 }
 
-.positive{
+.positive {
   color: #52b788;
 }
 
-.negative{
+.negative {
   color: #ef233c;
+}
+
+.update_btn:hover {
+  background-color: azure;
 }

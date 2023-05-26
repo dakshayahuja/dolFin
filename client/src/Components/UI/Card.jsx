@@ -42,15 +42,15 @@ const Card = (props) => {
       <div className="mx-2">
         <img src={props.imgUrl} className="w-25 mb-2" alt="..." />
         <h5>{props.title}</h5>
-        <p className="mb-1">{props.prices} </p>
+        <p className="mb-1">{props.price} </p>
         <p className={`${changeClass} mb-2`}>
-          {props.change} {props.pChange}
+          {props.change} ({props.pChange})
         </p>
         <img
           src={arrow}
           className="arrowStyle"
           style={{ cursor: "pointer" }}
-          width="20%"
+          width={"20%"}
           alt="arrow"
           onClick={() => setShow(true)}
         />

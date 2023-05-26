@@ -10,24 +10,27 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Topbar = () => {
-  const data = useContext(PriceDataContext);
-  const indices = [0, 1, 4, 5];
+  const { data } = useContext(PriceDataContext);
+  const indices = [0, 2, 5, 6];
 
   return (
     <div className="topbar">
       <ul className="topbar-items">
         {indices.map((index) => {
           const item = data[index];
+          if (!item) {
+            return null;
+          }
           return (
             <li key={index}>
-              {item.title} <span className="topbar-sp-1">{item.prices}</span>{" "}
+              {item.title} <span className="topbar-sp-1">{item.price}</span>{" "}
               <span
                 className="topbar-sp-2"
                 style={{
                   color: parseFloat(item.change) >= 0 ? "green" : "red",
                 }}
               >
-                {item.change} {item.pChange}
+                {item.change} ({item.pChange})
               </span>
             </li>
           );
@@ -36,6 +39,7 @@ const Topbar = () => {
     </div>
   );
 };
+
 
 const RenderNavbar = ({ user, buttonText, handleSignOut }) => (
   <Navbar collapseOnSelect expand="lg" className="navbar" id="nav1">

@@ -8,9 +8,9 @@ const CryptoCoins = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://dolfin-backend.herokuapp.com/api/crypto"
+          "https://api.coinstats.app/public/v1/coins"
         );
-        setCoins(response.data.coins.slice(0,10));
+        setCoins(response.data.coins.slice(0, 10));
       } catch (error) {
         console.error(error);
       }

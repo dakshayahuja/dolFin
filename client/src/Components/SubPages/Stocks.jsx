@@ -8,12 +8,14 @@ import { Row, Col, Container } from "react-bootstrap";
 import { PriceDataContext } from "../PriceDataProvider";
 
 export default function Stocks() {
-  const data = useContext(PriceDataContext);
-  const slicedData = data ? data.slice(0, 4) : [];
+  const { data, updateData } = useContext(PriceDataContext);
+  const globalIndices = data ? data.slice(0, 4) : [];
+  const indianIndices = data ? data.slice(4, 9) : [];
   return (
     <>
       <AppBar />
-      <CardHolder data={slicedData} title="Major Indices" />
+      <CardHolder data={globalIndices} title="Indian Market Indices" updateData={updateData} showButton="true"/>
+      <CardHolder data={indianIndices} title="Global Market Indices" />
       <Container fluid className="mt-5">
         <Row className="justify-content-center ps-3">
           <Col xs="auto">

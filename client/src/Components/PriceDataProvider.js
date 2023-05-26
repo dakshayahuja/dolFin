@@ -7,191 +7,141 @@ export const PriceDataProvider = ({ children }) => {
   const initialData = [
     {
       id: 0,
-      title: "NIFTY50",
-      prices: "",
+      title: "Nifty 50",
+      price: "",
       change: "",
+      pChange: "",
       img: "https://res.cloudinary.com/dmmhdkrul/image/upload/v1684696521/nse_pp0lsk.png",
       widget_ticker: "NIFTY50",
-      ticker: "NIFTY50",
     },
     {
       id: 1,
-      title: "S&P 500",
-      prices: "",
+      title: "Nifty Bank",
+      price: "",
       change: "",
-      img: "https://s3-symbol-logo.tradingview.com/indices/s-and-p-500--big.svg",
-      widget_ticker: "SP500",
-      ticker: "SPX",
+      pChange: "",
+      img: "https://res.cloudinary.com/dmmhdkrul/image/upload/v1684696521/nse_pp0lsk.png",
+      widget_ticker: "BANKNIFTY",
     },
     {
       id: 2,
-      title: "NASDAQ",
-      prices: "",
+      title: "Sensex",
+      altTitle: "BSE Sensex",
+      price: "",
       change: "",
-      img: "https://s3-symbol-logo.tradingview.com/indices/nasdaq-100--big.svg",
-      widget_ticker: "NDX",
-      ticker: "NDX",
+      pChange: "",
+      img: "https://res.cloudinary.com/dmmhdkrul/image/upload/v1685126167/bse3_ap2ye5.png",
+      widget_ticker: "SENSEX",
     },
     {
       id: 3,
-      title: "Dow Jones",
-      prices: "",
+      title: "India VIX",
+      price: "",
       change: "",
-      img: "https://s3-symbol-logo.tradingview.com/indices/dow-30--big.svg",
-      widget_ticker: "DJI",
-      ticker: "DJI",
+      pChange: "",
+      img: "https://res.cloudinary.com/dmmhdkrul/image/upload/v1685125370/india-flag-round-circle-icon_pasjmd.png",
+      widget_ticker: "INDIAVIX",
     },
     {
       id: 4,
-      title: "BTC/USD",
-      prices: "",
+      title: "Dow Jones",
+      price: "",
       change: "",
-      img: "https://static.coinstats.app/coins/1650455588819.png",
-      widget_ticker: "BTC",
-      ticker: "BTC",
+      pChange: "",
+      img: "https://res.cloudinary.com/dmmhdkrul/image/upload/v1685125474/usa-flag-round-circle-icon_k35yhv.png",
+      widget_ticker: "DJI",
     },
     {
       id: 5,
-      title: "ETH/USD",
-      prices: "",
+      title: "S&P 500",
+      price: "",
       change: "",
-      img: "https://static.coinstats.app/coins/1650455629727.png",
-      widget_ticker: "ETH",
-      ticker: "ETH",
+      pChange: "",
+      img: "https://res.cloudinary.com/dmmhdkrul/image/upload/v1685125474/usa-flag-round-circle-icon_k35yhv.png",
+      widget_ticker: "SP500",
+    },
+    {
+      id: 6,
+      title: "Nasdaq",
+      price: "",
+      change: "",
+      pChange: "",
+      img: "https://res.cloudinary.com/dmmhdkrul/image/upload/v1685125474/usa-flag-round-circle-icon_k35yhv.png",
+      widget_ticker: "IXIC",
+    },
+    {
+      id: 7,
+      title: "DAX",
+      price: "",
+      change: "",
+      pChange: "",
+      img: "https://res.cloudinary.com/dmmhdkrul/image/upload/v1685125473/germany-flag-round-circle-icon_mtibzi.png",
+      widget_ticker: "XETR:DAX",
+    },
+    {
+      id: 8,
+      title: "FTSE 100",
+      price: "",
+      change: "",
+      pChange: "",
+      img: "https://res.cloudinary.com/dmmhdkrul/image/upload/v1685125474/uk-flag-round-circle-icon_zksb6q.png",
+      widget_ticker: "FTSE",
     },
   ];
 
-  const [data, setData] = useState(initialData);
+  const [data, setData] = useState([]);
 
-  const fetchStockData = async (ticker, data) => {
-    let newData = [...data];
-    try {
-      let lastPrice, change, pChange;
-      const storedData = JSON.parse(localStorage.getItem(ticker));
-      const oneDay = 24 * 60 * 60 * 1000;
-      if (storedData && new Date() - new Date(storedData.timestamp) < oneDay) {
-        lastPrice = storedData.lastPrice;
-        change = storedData.change;
-        pChange = storedData.pChange;
-      } else {
-        const response = await axios.get(
-          `https://dolfin-backend.herokuapp.com/api/stock-price/${ticker}`
-        );
-        lastPrice = parseFloat(response.data.close).toFixed(2);
-        change = response.data.change;
-        change = parseFloat(change).toFixed(2);
-        pChange = parseFloat(response.data.percent_change).toFixed(2);
-        localStorage.setItem(
-          ticker,
-          JSON.stringify({
-            timestamp: new Date(),
-            lastPrice,
-            change,
-            pChange,
-          })
-        );
-      }
-      newData = newData.map((item) => {
-        if (item.ticker === ticker) {
-          return {
-            ...item,
-            prices: `$${lastPrice}`,
-            change: `${change}`,
-            pChange: `(${pChange}%)`,
-          };
-        }
-        return item;
-      });
-      return newData;
-    } catch (error) {
-      console.error(error);
-      return data;
-    }
-  };
-
-  const fetchData = async (data) => {
-    let newData = [...data];
+  const fetchGlobalData = async () => {
+    let newData = [...initialData];
     try {
       const response = await axios.get(
-        "https://dolfin-backend.herokuapp.com/api/stock-price/nifty"
+        "https://global-stock-market-api-data.p.rapidapi.com/major_global_indices_by_price",
+        {
+          headers: {
+            "X-RapidAPI-Key":
+              "a1b2dea5bamshf319786f27ab9adp1b3d6bjsnf1013f76e2e9",
+            "X-RapidAPI-Host": "global-stock-market-api-data.p.rapidapi.com",
+          },
+        }
       );
-      const lastPrice = response.data[0].lastPrice;
-      var change = response.data[0].change.toFixed(2);
-      var pChange = response.data[0].pChange.toFixed(2);
 
-      newData = newData.map((item) => {
-        if (item.title === "NIFTY50") {
-          return {
-            ...item,
-            prices: `₹${lastPrice}`,
-            change: `${change}`,
-            pChange: `(${pChange}%)`,
+      response.data.forEach((item) => {
+        let index = newData.findIndex((x) => x.title === item.name || x.altTitle === item.name);
+        if (index !== -1) {
+          const currencySymbol = index < 4 ? "₹" : "$";
+          newData[index] = {
+            ...newData[index],
+            price: `${currencySymbol}${item.last}`,
+            change: `${item.change}`,
+            pChange: `${item.changePercentage}`,
           };
         }
-        return item;
       });
-      return newData;
-    } catch (error) {
-      console.error(error);
-      return data;
-    }
-  };
-
-  const fetchCryptoData = async () => {
-    try {
-      const response = await axios.get(
-        "https://dolfin-backend.herokuapp.com/api/crypto"
-      );
-      const btcData = response.data.coins.find(
-        (coin) => coin.name === "Bitcoin"
-      );
-      const ethData = response.data.coins.find(
-        (coin) => coin.name === "Ethereum"
-      );
-
-      if (btcData && ethData) {
-        setData((prevData) => {
-          let newData = [...prevData];
-          newData[4] = {
-            ...newData[4],
-            prices: `$${btcData.price.toFixed(2)}`,
-            change: `$${btcData.priceChange1d.toFixed(2)}`,
-          };
-          newData[5] = {
-            ...newData[5],
-            prices: `$${ethData.price.toFixed(2)}`,
-            change: `$${ethData.priceChange1d.toFixed(2)}`,
-          };
-          return newData;
-        });
-      }
+      console.log(newData);
+      setData(newData);
+      localStorage.setItem("globalData", JSON.stringify(newData));
     } catch (error) {
       console.error(error);
     }
   };
 
   useEffect(() => {
-    const fetchDataAndSetState = async () => {
-      let newData = [...data];
-      try {
-        newData = await fetchData(newData);
-        newData = await fetchStockData("SPX", newData);
-        newData = await fetchStockData("NDX", newData);
-        newData = await fetchStockData("DJI", newData);
-        setData(newData);
-        await fetchCryptoData();
-      } catch (error) {
-        console.error(error);
-      }
-    };
+    const savedData = JSON.parse(localStorage.getItem("globalData"));
+    if (savedData) {
+      setData(savedData);
+    } else {
+      fetchGlobalData();
+    }
 
-    fetchDataAndSetState();
+    const intervalId = setInterval(() => {
+      fetchGlobalData();
+    }, 24 * 60 * 60 * 1000);
+
+    return () => clearInterval(intervalId);
   }, []);
 
-
-
   return (
-    <PriceDataContext.Provider value={data}>
+    <PriceDataContext.Provider value={{ data, updateData: fetchGlobalData }}>
       {children}
     </PriceDataContext.Provider>
   );
