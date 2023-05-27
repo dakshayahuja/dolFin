@@ -1,8 +1,30 @@
-import { useState } from "react";
+import React, { useState, useContext } from "react";
 import ModalView from "./ModalView";
 import TradingView from "../tradingView";
+import { UserContext } from "../UserProvider";
+import { toast } from "react-toastify";
+
 export default function CoinItem({ coin }) {
   const [show, setShow] = useState(false);
+  const { user } = useContext(UserContext);
+  const handleCoinClick = () => {
+    if (user) {
+      setShow(true);
+    } else {
+      toast.dismiss();
+      toast.info("Please login to view more information.", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+  };
+
   const formatMarketCap = (cap) => {
     let value;
     if (cap >= 1e9) {
@@ -12,10 +34,11 @@ export default function CoinItem({ coin }) {
     }
     return `$${value}`;
   };
+
   return (
     <>
       <tr>
-        <td onClick={() => setShow(true)} style={{ cursor: "pointer" }}>
+        <td onClick={handleCoinClick} style={{ cursor: "pointer" }}>
           <img src={coin.icon} width="40px" className="me-3" />
           {coin.symbol}
         </td>
@@ -32,11 +55,13 @@ export default function CoinItem({ coin }) {
         </td>
         <td>{formatMarketCap(coin.marketCap)}</td>
       </tr>
-      <ModalView
-        onClose={() => setShow(false)}
-        show={show}
-        widget=<TradingView ticker={`CRYPTO:${coin.symbol}USD`} />
-      ></ModalView>
+      {user ? (
+        <ModalView
+          onClose={() => setShow(false)}
+          show={show}
+          widget=<TradingView ticker={`CRYPTO:${coin.symbol}USD`} />
+        ></ModalView>
+      ) : null}
     </>
   );
 }
