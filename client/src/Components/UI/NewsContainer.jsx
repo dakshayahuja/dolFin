@@ -23,6 +23,7 @@ export default function NewsContainer() {
           fontFamily: "Montserrat",
           marginBottom: "1em",
           marginLeft: "0.5em",
+          textDecoration: "underline",
         }}
       >
         Latest Market News

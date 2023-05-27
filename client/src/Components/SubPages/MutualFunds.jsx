@@ -77,25 +77,35 @@ const MutualFunds = () => {
         "X-RapidAPI-Host": "latest-mutual-fund-nav.p.rapidapi.com",
       },
     };
-
     const fetchFunds = async () => {
-      try {
-        const response = await axios.request(options);
-        setAllFunds(response.data);
-        const filteredData = response.data.filter(
-          (fund) =>
-            (selectedSchemeCategory
-              ? formatCategory(fund["Scheme Category"]) ===
-                selectedSchemeCategory
-              : true) &&
-            (selectedFundFamily
-              ? fund["Mutual Fund Family"] === selectedFundFamily
-              : true)
-        );
-        setFunds(filteredData);
-      } catch (error) {
-        console.error(error);
+      let fetchedFunds = localStorage.getItem("fetchedFunds");
+      let lastFetchDate = localStorage.getItem("lastFetchDate");
+      let today = new Date().toISOString().split("T")[0];
+
+      if (fetchedFunds && lastFetchDate === today) {
+        setAllFunds(JSON.parse(fetchedFunds));
+      } else {
+        try {
+          const response = await axios.request(options);
+          fetchedFunds = response.data;
+          localStorage.setItem("fetchedFunds", JSON.stringify(fetchedFunds));
+          localStorage.setItem("lastFetchDate", today);
+          setAllFunds(fetchedFunds);
+        } catch (error) {
+          console.error(error);
+        }
       }
+
+      const filteredData = JSON.parse(fetchedFunds).filter(
+        (fund) =>
+          (selectedSchemeCategory
+            ? formatCategory(fund["Scheme Category"]) === selectedSchemeCategory
+            : true) &&
+          (selectedFundFamily
+            ? fund["Mutual Fund Family"] === selectedFundFamily
+            : true)
+      );
+      setFunds(filteredData);
     };
 
     fetchFunds();

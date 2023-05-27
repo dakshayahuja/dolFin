@@ -53,7 +53,13 @@ function TableContainer() {
 
   return (
     <>
-      <h3 style={{ fontFamily: "Montserrat", marginBottom: "1em" }}>
+      <h3
+        style={{
+          fontFamily: "Montserrat",
+          marginBottom: "1em",
+          textDecoration: "underline",
+        }}
+      >
         Nifty 50 Stocks
       </h3>
       <table id="stockContainer">
