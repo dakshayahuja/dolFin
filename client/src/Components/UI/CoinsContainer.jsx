@@ -23,13 +23,6 @@ const CryptoCoins = () => {
     fetchData();
   }, []);
   return (
-    <div>
-      <h1
-        className="mt-4 mb-3 text-center"
-        style={{ fontFamily: "Montserrat" }}
-      >
-        Top Cryptocurrencies
-      </h1>
       <table id="cryptoContainer">
         <thead>
           <tr>
@@ -48,7 +41,6 @@ const CryptoCoins = () => {
           ))}
         </tbody>
       </table>
-    </div>
   );
 };
 

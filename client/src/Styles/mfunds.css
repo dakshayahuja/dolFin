@@ -1,0 +1,63 @@
+.filter-container {
+  display: flex;
+  margin-bottom: 20px;
+  font-family: "Poppins";
+  justify-content: space-around;
+}
+
+.filter-dropdown {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #f2f2f2;
+  border: none;
+  border-radius: 0.25em;
+  text-align: center;
+}
+
+.filter-container::-webkit-scrollbar {
+  display: none;
+}
+
+.fund-table {
+  font-family: "Poppins";
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.fund-table thead tr {
+  background-color: #f2f2f2;
+  color: #fa6640f4;
+}
+
+.fund-table th,
+.fund-table td {
+  border: 1px solid #f2f2f2;
+  padding: 10px;
+  text-align: left;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination-container button {
+  border: none;
+  background-color: #fe643df4;
+  color: #fff;
+  padding: 0.5em 0.9em;
+  margin: 0 6px;
+  cursor: pointer;
+  border-radius: 10%;
+}
+
+.pagination-container button:hover {
+  background-color: #da4520;
+}
+
+.no-result {
+  text-align: center;
+  font-size: 1.5em;
+  padding: 1.25em 0;
+}
