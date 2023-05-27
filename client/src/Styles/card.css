@@ -95,14 +95,14 @@ a {
   border-bottom: 1px solid #eee;
 }
 
+.update_btn:hover {
+  background-color: azure;
+}
+
 .positive {
   color: #52b788;
 }
 
 .negative {
   color: #ef233c;
-}
-
-.update_btn:hover {
-  background-color: azure;
 }

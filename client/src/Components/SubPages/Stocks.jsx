@@ -18,7 +18,7 @@ export default function Stocks() {
       <CardHolder data={indianIndices} title="Global Market Indices" />
       <Container fluid className="mt-5">
         <Row className="justify-content-center ps-3">
-          <Col xs="auto">
+          <Col xs={6}>
             <TableContainer />
           </Col>
           <Col xs={6} className="px-3">
