@@ -6,15 +6,35 @@ export default function NewsContainer() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "https://dolfin-backend.herokuapp.com/api/news"
-        );
-        setArticles(response.data.articles);
+        const storedArticles = localStorage.getItem("storedArticles");
+        const lastFetchTime = localStorage.getItem("lastFetchTime");
+        const currentTime = Date.now();
+        if (
+          storedArticles &&
+          lastFetchTime &&
+          currentTime - lastFetchTime <= 120000
+        ) {
+          setArticles(JSON.parse(storedArticles));
+        } else {
+          const response = await axios.get(
+            "https://dolfin-backend.herokuapp.com/api/news"
+          );
+          setArticles(response.data.articles);
+          localStorage.setItem(
+            "storedArticles",
+            JSON.stringify(response.data.articles)
+          );
+          localStorage.setItem("lastFetchTime", currentTime.toString());
+        }
       } catch (error) {
         console.error(error);
       }
     };
+
     fetchData();
+    const interval = setInterval(fetchData, 3600000);
+
+    return () => clearInterval(interval);
   }, []);
   return (
     <>
