@@ -106,7 +106,9 @@ export const PriceDataProvider = ({ children }) => {
       );
 
       response.data.forEach((item) => {
-        let index = newData.findIndex((x) => x.title === item.name || x.altTitle === item.name);
+        let index = newData.findIndex(
+          (x) => x.title === item.name || x.altTitle === item.name
+        );
         if (index !== -1) {
           const currencySymbol = index < 4 ? "₹" : "$";
           newData[index] = {
@@ -117,7 +119,6 @@ export const PriceDataProvider = ({ children }) => {
           };
         }
       });
-      console.log(newData);
       setData(newData);
       localStorage.setItem("globalData", JSON.stringify(newData));
     } catch (error) {
@@ -135,7 +136,7 @@ export const PriceDataProvider = ({ children }) => {
 
     const intervalId = setInterval(() => {
       fetchGlobalData();
-    }, 24 * 60 * 60 * 1000);
+    }, 30 * 60 * 1000);
 
     return () => clearInterval(intervalId);
   }, []);

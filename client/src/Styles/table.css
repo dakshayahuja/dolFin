@@ -1,16 +1,17 @@
-table{
+#stockContainer{
   font-family: Poppins;
   background: rgba(6, 7, 8, 0.349);
   color: #edf2f4;
+  min-width: 100%;
 }
 
-td, th{
+#stockContainer td, th{
   border: solid 1px #343a40;
   padding: 0.5em 0.7em;
   margin: auto;
 }
 
-table th{
+#stockContainer th{
   font-size: large;
   color: black;
   background-color:#fe643df4;
@@ -24,4 +25,30 @@ table th{
 
 .negative{
   color: #ef233c;
+}
+
+#cryptoContainer{
+  font-family: Poppins;
+  min-width: 90%;
+  background-color: #0b0e11;
+  margin: 0 5vw ;
+  border-radius: 40px;
+}
+
+
+#cryptoContainer td, th{
+  border: none;
+  padding: 1em 1.5em;
+  margin: auto;
+}
+
+#cryptoContainer td{
+  border-top: solid 1px #343a40;
+}
+
+#cryptoContainer th{
+  font-size: large;
+  color: #fe643df4;
+  text-transform: uppercase;
+  font-weight: bold;
 }

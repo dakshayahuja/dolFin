@@ -10,9 +10,13 @@ function TableContainer() {
     const fetchData = async () => {
       const storageData = localStorage.getItem("stockData");
       const lastFetchTime = localStorage.getItem("lastFetchTime");
-      const oneDay = 24 * 60 * 60 * 1000;
+      const halfHour = 30 * 60 * 1000;
 
-      if (storageData && lastFetchTime && Date.now() - lastFetchTime < oneDay) {
+      if (
+        storageData &&
+        lastFetchTime &&
+        Date.now() - lastFetchTime < halfHour
+      ) {
         let data = JSON.parse(storageData);
         data = data.filter((item) => item.symbol !== "NIFTY 50");
         data.sort((a, b) => a.symbol.localeCompare(b.symbol));
@@ -52,22 +56,22 @@ function TableContainer() {
       <h3 style={{ fontFamily: "Montserrat", marginBottom: "1em" }}>
         Nifty 50 Stocks
       </h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Symbol</th>
-              <th>Price</th>
-              <th>Change</th>
-              <th>Change %</th>
-              <th>Traded Volume</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.slice(1).map((item, index) => (
-              <TableItem key={index} item={item} />
-            ))}
-          </tbody>
-        </table>
+      <table id="stockContainer">
+        <thead>
+          <tr>
+            <th>Symbol</th>
+            <th>Price</th>
+            <th>Change</th>
+            <th>Change %</th>
+            <th>Traded Volume</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.slice(1).map((item, index) => (
+            <TableItem key={index} item={item} />
+          ))}
+        </tbody>
+      </table>
     </>
   );
 }

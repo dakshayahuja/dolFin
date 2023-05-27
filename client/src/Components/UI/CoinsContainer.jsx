@@ -1,16 +1,21 @@
-import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "../../Styles/table.css";
 import CoinItem from "./CoinItem";
+import React, { useState, useEffect } from "react";
 
 const CryptoCoins = () => {
   const [coin, setCoins] = useState([]);
+  const invalidCoins = ["APT", "ARB", "CWBTC", "GGTKN", "EDGT"];
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
           "https://api.coinstats.app/public/v1/coins"
         );
-        setCoins(response.data.coins.slice(0, 10));
+        const filteredCoins = response.data.coins.filter(
+          (coin) => !invalidCoins.includes(coin.symbol)
+        );
+        setCoins(filteredCoins.slice(0, 50));
       } catch (error) {
         console.error(error);
       }
@@ -18,17 +23,23 @@ const CryptoCoins = () => {
     fetchData();
   }, []);
   return (
-    <>
-      <table>
+    <div>
+      <h1
+        className="mt-4 mb-3 text-center"
+        style={{ fontFamily: "Montserrat" }}
+      >
+        Top Cryptocurrencies
+      </h1>
+      <table id="cryptoContainer">
         <thead>
           <tr>
             <th></th>
             <th>Name</th>
-            <th>Symbol</th>
             <th>Price</th>
-            <th>Volume</th>
-            <th>Market Cap</th>
+            <th>1h Change</th>
             <th>24h Change</th>
+            <th>1 Week Change</th>
+            <th>Market Cap</th>
           </tr>
         </thead>
         <tbody>
@@ -37,7 +48,7 @@ const CryptoCoins = () => {
           ))}
         </tbody>
       </table>
-    </>
+    </div>
   );
 };
 
