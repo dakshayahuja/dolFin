@@ -40,6 +40,15 @@ const Footer = () => (
             <ul className="list-unstyled">
               <li>
                 <a
+                  href="https://www.heroku.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Heroku
+                </a>
+              </li>
+              <li>
+                <a
                   href="https://firebase.google.com/"
                   target="_blank"
                   rel="noopener noreferrer"

@@ -4,8 +4,13 @@ import TradingView from "../tradingView";
 export default function CoinItem({ coin }) {
   const [show, setShow] = useState(false);
   const formatMarketCap = (cap) => {
-    let billionCap = cap / 1e9;
-    return `$${billionCap.toFixed(2)}B`;
+    let value;
+    if (cap >= 1e9) {
+      value = (cap / 1e9).toFixed(2) + "B";
+    } else {
+      value = (cap / 1e6).toFixed(2) + "M";
+    }
+    return `$${value}`;
   };
   return (
     <>
