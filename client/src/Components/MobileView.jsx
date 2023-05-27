@@ -1,7 +1,7 @@
 import "../Styles/mobileview.css";
-import playStore from "../Assets/Play_Store.png";
-import appStore from "../Assets/App_Store.png";
 import logo from "../Assets/logo-light.png";
+import appStore from "../Assets/App_Store.png";
+import playStore from "../Assets/Play_Store.png";
 
 const MobileView = () => {
   return (

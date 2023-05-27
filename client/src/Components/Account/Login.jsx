@@ -8,14 +8,14 @@ import {
   Navbar,
   Nav,
 } from "react-bootstrap";
-import loginImg from "../../Assets/login.png";
-import logo from "../../Assets/favicon.png";
-import { useNavigate } from "react-router-dom";
-import "../../Styles/login-signup.css";
 import { auth } from "../Firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { ToastContainer, toast } from "react-toastify";
+import "../../Styles/login-signup.css";
+import logo from "../../Assets/favicon.png";
+import loginImg from "../../Assets/login.png";
+import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const LoginNavbar = () => {
   return (

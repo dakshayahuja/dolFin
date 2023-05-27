@@ -1,34 +1,25 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
-import { UserProvider } from "./Components/UserProvider";
-import { PriceDataProvider } from "./Components/PriceDataProvider";
+import HomePage from "./Components/HomePage";
 import Login from "./Components/Account/Login";
 import Signup from "./Components/Account/SignUp";
+import { Routes, Route } from "react-router-dom";
 import MobileView from "./Components/MobileView";
 import Crypto from "./Components/SubPages/Crypto";
 import Stocks from "./Components/SubPages/Stocks";
-import Landing from "./Components/HomePage/Landing";
-import Dashboard from "./Components/HomePage/Dashboard";
+import { UserProvider } from "./Components/UserProvider";
 import MutualFunds from "./Components/SubPages/MutualFunds";
+import { PriceDataProvider } from "./Components/PriceDataProvider";
 
 const Mobile = () => {
   return <MobileView />;
 };
 
 const App = () => {
-  const [user, setUser] = useState(null);
-
-  var isLoggedIn = false;
-  let page = <Landing />;
+  let page = <HomePage />;
   const pageDecide = () => {
     var isMobile = window.orientation > -1;
     if (isMobile === true) {
       page = <Mobile />;
-    } else if (isLoggedIn === true) {
-      page = <Dashboard />;
-    } else {
-      page = <Landing />;
     }
   };
   pageDecide();

@@ -1,7 +1,7 @@
-import { useContext } from "react";
-import { UserContext } from "../../Components/UserProvider";
 import "../../Styles/home.css";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../Components/UserProvider";
 
 const Hero = () => {
   const { user } = useContext(UserContext);

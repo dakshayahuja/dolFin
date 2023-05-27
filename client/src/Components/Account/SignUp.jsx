@@ -8,16 +8,16 @@ import {
   Navbar,
   Nav,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import loginImg from "../../Assets/login.png";
-import logo from "../../Assets/favicon.png";
-import { useNavigate } from "react-router-dom";
-import "../../Styles/login-signup.css";
 import { auth } from "../Firebase";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import "../../Styles/login-signup.css";
+import { Link } from "react-router-dom";
+import logo from "../../Assets/favicon.png";
 import { UserContext } from "../UserProvider";
+import loginImg from "../../Assets/login.png";
+import { useNavigate } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 const SignupNavbar = () => (
   <Navbar className="login-navbar">

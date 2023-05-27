@@ -1,13 +1,13 @@
-import { useContext, useState, useEffect } from "react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
-import { Nav, Navbar, Dropdown, Container } from "react-bootstrap";
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import { PriceDataContext } from "./PriceDataProvider";
-import logo from "../Assets/favicon.png";
 import "../Styles/navbar.css";
+import logo from "../Assets/favicon.png";
 import { UserContext } from "./UserProvider";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link, Outlet } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import { PriceDataContext } from "./PriceDataProvider";
+import { useContext, useState, useEffect } from "react";
+import { Nav, Navbar, Dropdown } from "react-bootstrap";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
 const Topbar = () => {
   const { data } = useContext(PriceDataContext);
@@ -39,7 +39,6 @@ const Topbar = () => {
     </div>
   );
 };
-
 
 const RenderNavbar = ({ user, buttonText, handleSignOut }) => (
   <Navbar collapseOnSelect expand="lg" className="navbar" id="nav1">

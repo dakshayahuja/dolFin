@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../Styles/news.css";
+import React, { useState, useEffect } from "react";
 export default function NewsContainer() {
   const [articles, setArticles] = useState([]);
   useEffect(() => {

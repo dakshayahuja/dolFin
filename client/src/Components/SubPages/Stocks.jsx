@@ -14,7 +14,12 @@ export default function Stocks() {
   return (
     <>
       <AppBar />
-      <CardHolder data={globalIndices} title="Indian Market Indices" updateData={updateData} showButton="true"/>
+      <CardHolder
+        data={globalIndices}
+        title="Indian Market Indices"
+        updateData={updateData}
+        showButton="true"
+      />
       <CardHolder data={indianIndices} title="Global Market Indices" />
       <Container fluid className="mt-5">
         <Row className="justify-content-center ps-3">

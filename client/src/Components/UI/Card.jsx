@@ -1,8 +1,8 @@
-import arrow from "../../Assets/arrow.png";
 import "../../Styles/card.css";
+import ModalView from "./ModalView";
 import React, { useState } from "react";
 import TradingView from "../tradingView";
-import ModalView from "./ModalView";
+import arrow from "../../Assets/arrow.png";
 
 const Card = (props) => {
   const [show, setShow] = useState(false);

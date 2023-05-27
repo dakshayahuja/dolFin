@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
 import axios from "axios";
-import TableItem from "./TableItem";
 import "../../Styles/table.css";
+import TableItem from "./TableItem";
+import React, { useEffect, useState } from "react";
 
 function TableContainer() {
   const [data, setData] = useState([]);

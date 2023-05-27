@@ -1,10 +1,10 @@
-import Header from "../UI/Header";
-import Stock from "../../Assets/stock.png";
-import Crypto from "../../Assets/crypto.png";
-import MF from "../../Assets/MF.png";
-import Hero from "../UI/Hero";
-import AppBar from "../AppBar";
-import Footer from "../Footer";
+import Hero from "./UI/Hero";
+import AppBar from "./AppBar";
+import Footer from "./Footer";
+import Header from "./UI/Header";
+import MF from "../Assets/MF.png";
+import Stock from "../Assets/stock.png";
+import Crypto from "../Assets/crypto.png";
 
 const Landing = () => {
   return (

@@ -1,6 +1,6 @@
-#news-container{
+#news-container {
   font-family: Poppins;
-  max-height: 2055px;
+  max-height: 2100px;
   overflow-y: scroll;
   scrollbar-color: #fe643df4 #161a1d;
 }
@@ -17,27 +17,27 @@
   background: #fe643df4;
 }
 
-#news-item{
+#news-item {
   margin: 0em 1em 1em;
   font-family: Montserrat;
 }
 
-#news-item h5{
+#news-item h5 {
   text-transform: uppercase;
   font-family: Poppins;
 }
 
-#news-item p{
+#news-item p {
   font-size: 14px;
   color: #adb5bd;
   margin-bottom: 3px;
 }
 
-#news-item a{
+#news-item a {
   color: #fe643df4;
   font-size: 14px;
 }
 
-#news-item a:hover{
+#news-item a:hover {
   color: #52b788;
 }

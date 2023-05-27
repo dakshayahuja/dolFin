@@ -74,20 +74,21 @@ a:hover {
   border: none;
 }
 
-.dropdown-menu{
+.dropdown-menu {
   border: none;
   background-color: #1c2124;
   min-width: fit-content;
   padding: 0.2em 1.5em;
 }
 
-.dropdown-menu a{
+.dropdown-menu a {
   color: #fe633d;
   font-size: 1em;
   padding: 0;
 }
 
-.dropdown-menu:hover, .dropdown-menu:hover a{
+.dropdown-menu:hover,
+.dropdown-menu:hover a {
   color: #ec4218;
   background-color: white;
   cursor: pointer;

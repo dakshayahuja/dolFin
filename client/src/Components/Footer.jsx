@@ -1,7 +1,7 @@
-import "../Styles/footer.css";
-import logo_tp from "../Assets/logo-light.png";
 import React from "react";
+import "../Styles/footer.css";
 import { Link } from "react-router-dom";
+import logo_tp from "../Assets/logo-light.png";
 
 const Footer = () => (
   <footer className="page-footer font-small blue pt-4">
@@ -17,61 +17,56 @@ const Footer = () => (
 
         <hr className="clearfix w-100 d-md-none pb-0" />
 
-        <div className="col-md-3 mt-4">
-          <h5 className="text-uppercase pb-md-1 fw-semibold">Pages</h5>
-          <ul className="list-unstyled">
-            <li>
-              <Link to="/stocks">Stocks</Link>
-            </li>
-            <li>
-              <Link to="/mutualfund">Mutual Funds</Link>
-            </li>
-            <li>
-              <Link to="/crypto">Crypto</Link>
-            </li>
-          </ul>
+        <div className="col-md-3 mt-4 d-flex align-items-center justify-content-center">
+          <div>
+            <h5 className="text-uppercase pb-md-1 fw-semibold">Pages</h5>
+            <ul className="list-unstyled">
+              <li>
+                <Link to="/stocks">Stocks</Link>
+              </li>
+              <li>
+                <Link to="/mutualfund">Mutual Funds</Link>
+              </li>
+              <li>
+                <Link to="/crypto">Crypto</Link>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <div className="col-md-3 mt-4">
-          <h5 className="text-uppercase pb-md-1 fw-semibold">References</h5>
-          <ul className="list-unstyled">
-            <li>
-              <a
-                href="https://www.moneycontrol.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Moneycontrol
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://in.tradingview.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                TradingView
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://finnhub.io/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Finnhub
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://finance.yahoo.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Yahoo Finance
-              </a>
-            </li>
-          </ul>
+        <div className="col-md-3 mt-4 d-flex align-items-center justify-content-center">
+          <div>
+            <h5 className="text-uppercase pb-md-1 fw-semibold">References</h5>
+            <ul className="list-unstyled">
+              <li>
+                <a
+                  href="https://firebase.google.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Firebase
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://rapidapi.com/hub"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  RapidAPI
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://in.tradingview.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  TradingView
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
